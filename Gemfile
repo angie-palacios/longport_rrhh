@@ -51,3 +51,13 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Devise is a flexible authentication solution for Rails based on Warden.
 gem 'devise', '<= 4.8'
+
+# Bootstrap
+gem 'bootstrap', '~> 4.3.1'
+# JQuery
+gem 'jquery-rails'
+# Bootstrap sass
+# gem 'bootstrap-sass'
+# Popper
+gem 'popper_js', '~> 1.14.5'
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
