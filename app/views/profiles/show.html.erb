@@ -1,0 +1,19 @@
+<div class="row justify-content-center m-0">
+  <div class="col-4 bg-dark text-white rounded p-4">
+    <%= hidden_field_tag 'user_id', @user.id %>
+    <p>
+      <strong>Name:</strong>
+      <%= @user.name %>
+    </p>
+    <p>
+      <strong>Email :</strong>
+      <%= @user.email %>
+    </p>
+    <p>
+      <strong>Rol:</strong>
+      <%= @user.rol_id %>
+    </p>
+    <%= link_to 'Edit', edit_profile_path(@user) %> |
+    <%= link_to 'Back', profiles_path %>
+  </div>
+</div>
