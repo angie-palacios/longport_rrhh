@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :permissions
   resources :rols
   resources :businesses
   devise_for :users, controllers: {
