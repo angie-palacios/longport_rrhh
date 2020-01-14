@@ -14,4 +14,5 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
+//= require select2-full
 //= require_tree .

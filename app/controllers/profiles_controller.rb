@@ -10,6 +10,11 @@ before_action :set_user, only: [:show,:edit, :update, :destroy]
   def new
     @user = User.new
   end
+
+  # GET /users/new
+  def show
+    @permission = Permission.all
+  end
   
   # GET /users/1/edit
   def edit

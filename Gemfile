@@ -61,3 +61,6 @@ gem 'jquery-rails'
 # Popper
 gem 'popper_js', '~> 1.14.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+
+# Select2 is a jQuery based replacement for select boxes. It supports searching, remote data sets, and infinite scrolling of results.
+gem "select2-rails"
