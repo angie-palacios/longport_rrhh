@@ -27,5 +27,6 @@ module LongportRrhh
       g.stylesheets false
     end
 
+    config.assets.paths << Rails.root.join('vendor', 'templates', 'sb_admin')
   end
 end

@@ -17,7 +17,7 @@ end
   <% end %>
   <div class="field">
     <%= f.label :status %><br />
-    <%= select_tag(:status, options_for_select([['Seleccionar ...'], ['Activo', 'true'], ['Liquidado', 'false']]), :required => true) %>
+    <%= select_tag(:status, options_for_select([['Seleccionar ...'], ['Activo', 'Activo'], ['Liquidado', 'Liquidado']])) %>
   </div>
    <div class="form-group">
     <%= f.label :business, class: 'contro-label' %>
@@ -121,7 +121,7 @@ end
         <span class="input-group-addon">
           <span class="glyphicon glyphicon-plane"></span>
         </span>
-        <select name="user[rol_id]" id="user_rol"></select>
+        <select name="user[rol_id]" id="rol_id"></select>
       </div>
     </div>
   </div>
@@ -149,7 +149,7 @@ end
 
 <script type="text/javascript">
   $(document).ready(function(){
-      $("#user_rol").select2({
+      $("#rol_id").select2({
           width: "330px",
           minimumInputlength: 1,
           debug: true,

@@ -1,19 +1,19 @@
 class ProfilesController < ApplicationController
-before_action :set_user, only: [:show,:edit, :update, :destroy]
+before_action :set_user, only: [:show,:edit, :update, :destroy, :edit_status_permission]
 
   # GET /users
   def index
     @users = User.all
   end
+  
+  # GET /permissions
+  def show
+    @permissions = Permission.all
+  end
 
   # GET /users/new
   def new
     @user = User.new
-  end
-
-  # GET /users/new
-  def show
-    @permission = Permission.all
   end
   
   # GET /users/1/edit
@@ -44,6 +44,23 @@ before_action :set_user, only: [:show,:edit, :update, :destroy]
   def destroy
     @user.destroy
     redirect_to profiles_url, notice: 'User was successfully destroyed.'
+  end
+
+def edit_status_permission
+    if params[:apply] && params[:apply] == "true"
+      @user.permissions << Permission.find_by(:code => params[:code])
+    else
+      permission=@user.permissions.find_by(:code => params[:code])
+      @user.permissions.delete(permission)
+    end
+
+    respond_to do | format |
+      format.json {
+        render json: {
+          :message => 'ok'
+        }
+      }
+    end
   end
 
   private
