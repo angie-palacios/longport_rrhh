@@ -5,6 +5,11 @@ Rails.application.routes.draw do
       post 'edit_status_permission'
     end
   end
+  resources :profiles do
+    member do
+      post 'edit_status_permission'
+    end
+  end
   resources :businesses
   devise_for :users, controllers: {
     registrations: 'users/registrations'
@@ -13,7 +18,6 @@ Rails.application.routes.draw do
 
   get 'home/index'
 
-  resources :profiles
 
   root "home#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

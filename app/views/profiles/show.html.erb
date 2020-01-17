@@ -69,7 +69,7 @@
   }
   function edit_status_permission(oParams){
     $.ajax({
-      url:"<%= edit_status_permission_rol_path(format: :json) %>",
+      url:"<%= edit_status_permission_profile_path(format: :json) %>",
       data: {
         id: oParams.user_id,
         code: oParams.code,

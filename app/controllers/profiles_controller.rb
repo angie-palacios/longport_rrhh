@@ -23,8 +23,8 @@ before_action :set_user, only: [:show,:edit, :update, :destroy, :edit_status_per
   # POST /user/create
   def create
     @user = User.new(user_params)
-
     if @user.save
+      EmailMailer.confirmationregisterusers(@user).deliver
       redirect_to profiles_path(@user), notice: 'User was successfully created.'
     else
       render :new
@@ -51,6 +51,10 @@ def edit_status_permission
       @user.permissions << Permission.find_by(:code => params[:code])
     else
       permission=@user.permissions.find_by(:code => params[:code])
+      # puts "-----------------------------------------"
+      # puts permission.as_json
+      puts @user.permissions.as_json
+      # puts "-----------------------------------------"
       @user.permissions.delete(permission)
     end
 
@@ -70,7 +74,7 @@ def edit_status_permission
     end
 
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :business, :status, :documentation, :name, :date_initiated, :analytical_account, :position, :sex, :date_birth, :date_finality, :salary, :variable_salary, :constitutive_compensation, :constitutive_not_compensation, :contract, :address, :neighborhood, :phone, :marital_status, :profession, :eps, :afp, :photo, :rol_id)
+      params.require(:user).permit(:email, :password, :password_confirmation, :business_id, :status, :documentation, :name, :date_initiated, :analytical_account, :position, :sex, :date_birth, :date_finality, :salary, :variable_salary, :constitutive_compensation, :constitutive_not_compensation, :contract, :address, :neighborhood, :phone, :marital_status, :profession, :eps, :afp, :photo, :rol_id)
     end
 
 end

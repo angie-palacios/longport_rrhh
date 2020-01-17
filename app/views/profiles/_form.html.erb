@@ -42,10 +42,8 @@ end
                         <span class="input-group-addon ">
                           <span class="glyphicon glyphicon-plane"></span>
                         </span>
-                        <select name="user[business]" id="user_business" class="form-control form-control-user">
-                          <% unless @user.business.nil? %>
-                            <option value="<%= @user.business.id %>" selected="selected"><%= @user.business.name %></option>
-                          <% end %>
+                        <select name="user[business_id]" id="user_business" class="form-control form-control-user">
+                          
                       </select>
                     </div>
                   </div>
