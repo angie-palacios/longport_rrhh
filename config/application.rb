@@ -8,9 +8,27 @@ Bundler.require(*Rails.groups)
 
 module LongportRrhh
   
+  # User
   CREATE_USER = "create_user"
+  DELETE_USER = "delete_user"
   EDIT_USER = "edit_user"
-
+  VIEW_USER = "view_user"
+  # rol
+  CREATE_ROL = "create_rol"
+  DELETE_ROL = "delete_rol"
+  EDIT_ROL = "edit_rol"
+  VIEW_ROL = "view_rol"
+  # permission
+  CREATE_PERMISSION = "create_permission"
+  DELETE_PERMISSION = "delete_permission"
+  EDIT_PERMISSION = "edit_permission"
+  VIEW_PERMISSION = "view_permission"
+  # business
+  CREATE_BUSINESS = "create_business"
+  DELETE_BUSINESS = "delete_business"
+  EDIT_BUSINESS = "edit_business"
+  VIEW_BUSINESS = "view_business"
+  
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1

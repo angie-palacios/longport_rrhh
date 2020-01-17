@@ -4,210 +4,244 @@ else
   path = profile_path
 end
 %>
-<%= form_for @user, :url => path do |f| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-      <ul>
-        <% user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div class="field">
-    <%= f.label :status %><br />
-    <%= select_tag(:status, options_for_select([['Seleccionar ...'], ['Activo', 'Activo'], ['Liquidado', 'Liquidado']])) %>
-  </div>
-   <div class="form-group">
-    <%= f.label :business, class: 'contro-label' %>
-    <div class="col-md-7">
-      <div class="input-group">
-        <span class="input-group-addon">
-          <span class="glyphicon glyphicon-plane"></span>
-        </span>
-        <select name="user[business]" id="user_business"></select>
-      </div>
-    </div>
-  </div>
-  <div class="field">
-    <%= f.label :documentation %><br />
-    <%= f.number_field :documentation, autofocus: true, autocomplete: "documentation" %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-  </div>
-  <div class="field">
-    <%= f.label :date_initiated %><br />
-    <%= f.date_field :date_initiated, autofocus: true, autocomplete: "date_initiated" %>
-  </div>
-  <div class="field">
-    <%= f.label :analytical_accoun %><br />
-    <%= f.text_field :analytical_account, autofocus: true %>
-  </div>
-  <div class="field">
-    <%= f.label :position %><br />
-    <%= f.text_field :position, autofocus: true, autocomplete: "position" %>
-  </div>
-  <div class="field">
-    <%= f.label :sex %><br />
-    <%= f.text_field :sex, autofocus: true, autocomplete: "sex" %>
-  </div>
-  <div class="field">
-    <%= f.label :date_birth %><br />
-    <%= f.date_field :date_birth, autofocus: true, autocomplete: "date_birth" %>
-  </div>
-  <div class="field">
-    <%= f.label :date_finality %><br />
-    <%= f.date_field :date_finality, autofocus: true, autocomplete: "date_finality" %>
-  </div>
-  <div class="field">
-    <%= f.label :salary %><br />
-    <%= f.text_field :salary, autofocus: true, autocomplete: "salary" %>
-  </div>
-  <div class="field">
-    <%= f.label :variable_salary %><br />
-    <%= f.text_field :variable_salary, autofocus: true, autocomplete: "variable_salary" %>
-  </div>
-  <div class="field">
-    <%= f.label :constitutive_compensation %><br />
-    <%= f.text_field :constitutive_compensation, autofocus: true, autocomplete: "constitutive_compensation" %>
-  </div>
-  <div class="field">
-    <%= f.label :constitutive_not_compensation %><br />
-    <%= f.text_field :constitutive_not_compensation, autofocus: true, autocomplete: "constitutive_not_compensation" %>
-  </div>
-  <div class="field">
-    <%= f.label :contract %><br />
-    <%= f.text_field :contract, autofocus: true, autocomplete: "contract" %>
-  </div>
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address, autofocus: true, autocomplete: "address" %>
-  </div>
-  <div class="field">
-    <%= f.label :neighborhood %><br />
-    <%= f.text_field :neighborhood, autofocus: true, autocomplete: "neighborhood" %>
-  </div>
-  <div class="field">
-    <%= f.label :phone %><br />
-    <%= f.text_field :phone, autofocus: true, autocomplete: "phone" %>
-  </div>
-  <div class="field">
-    <%= f.label :marital_status %><br />
-    <%= f.text_field :marital_status, autofocus: true, autocomplete: "marital_status" %>
-  </div>
-  <div class="field">
-    <%= f.label :profession %><br />
-    <%= f.text_field :profession, autofocus: true, autocomplete: "profession" %>
-  </div>
-  <div class="field">
-    <%= f.label :eps %><br />
-    <%= f.text_field :eps, autofocus: true, autocomplete: "eps" %>
-  </div>
-  <div class="field">
-    <%= f.label :afp %><br />
-    <%= f.text_field :afp, autofocus: true, autocomplete: "afp" %>
-  </div>
-  <div class="field">
-    <%= f.label :photo %><br />
-    <%= f.text_field :photo, autofocus: true, autocomplete: "photo" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :rol, class: 'contro-label' %>
-    <div class="col-md-7">
-      <div class="input-group">
-        <span class="input-group-addon">
-          <span class="glyphicon glyphicon-plane"></span>
-        </span>
-        <select name="user[rol_id]" id="rol_id"></select>
-      </div>
-    </div>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%# Rols %>
-
-<script type="text/javascript">
-  $(document).ready(function(){
-      $("#rol_id").select2({
-          width: "330px",
-          minimumInputlength: 1,
-          debug: true,
-          ajax: {
-              url: "<%= rols_path(format: :json) %>",
-              dataType: 'json',
-              delay: 250,
-              data: function (params){
-                  return {
-                      type: "select2",
-                      q: params.term
-                  };
-              },
-              processResults: function (data, page) {
-                  return {
-                      results: $.map(data, function (rol) {
+<div class="container">
+  <!-- Outer Row -->
+  <div class="row justify-content-center">
+    <div class="col-xl-12 col-lg-5 col-md-6">
+      <div class="card o-hidden border-0 shadow-lg my-3">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+            <div class="col-lg-4">
+              <%= form_for @user, :url => path, class: "" do |f| %>
+                <div class="p-4">
+                  <% if user.errors.any? %>
+                    <div id="error_explanation">
+                      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+                      <ul>
+                        <% user.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
+                  <div class="field">
+                    <%= f.label :status %><br />
+                    <%select_options = [
+                    ["#{t("gui.actions.select")}", ""],
+                    [t("Activo"), "Activo"],
+                    [t("Liquidado"), "Liquidado"],
+                    ]
+                    %>
+                    <%= f.select :status, options_for_select(select_options, selected: @user.status), {}, {class: 'form-control form-control-user'} %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :business, class: 'contro-label' %>
+                    <div class="col-md-12 form-control form-control-user">
+                      <div class="input-group">
+                        <span class="input-group-addon ">
+                          <span class="glyphicon glyphicon-plane"></span>
+                        </span>
+                        <select name="user[business]" id="user_business" class="form-control form-control-user">
+                          <% unless @user.business.nil? %>
+                            <option value="<%= @user.business.id %>" selected="selected"><%= @user.business.name %></option>
+                          <% end %>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="field">
+                  <%= f.label :documentation %><br />
+                            <%= f.number_field :documentation, class: "form-control form-control-user",autofocus: true, autocomplete: "documentation" %>
+                          </div>
+                          <div class="field">
+                            <%= f.label :name %><br />
+                            <%= f.text_field :name, class: "form-control form-control-user",autofocus: true, autocomplete: "name" %>
+                          </div>
+                          <div class="field">
+                            <%= f.label :date_initiated %><br />
+                            <%= f.date_field :date_initiated, class: "form-control form-control-user",autofocus: true, autocomplete: "date_initiated" %>
+                          </div>
+                          <div class="field">
+                            <%= f.label :analytical_accoun %><br />
+                            <%= f.text_field :analytical_account, class: "form-control form-control-user",autofocus: true %>
+                          </div>
+                          <div class="field">
+                            <%= f.label :position %><br />
+                            <%= f.text_field :position, class: "form-control form-control-user",autofocus: true, autocomplete: "position" %>
+                          </div>
+                          <div class="field">
+                            <%= f.label :sex %><br />
+                            <%= f.text_field :sex, class: "form-control form-control-user",autofocus: true, autocomplete: "sex" %>
+                          </div>
+                          <div class="field">
+                            <%= f.label :date_birth %><br />
+                            <%= f.date_field :date_birth, class: "form-control form-control-user",autofocus: true, autocomplete: "date_birth" %>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-4">
+                        <div class="p-4">
+                          <div class="field">
+                            <%= f.label :date_finality %><br />
+                            <%= f.date_field :date_finality, class: "form-control form-control-user",autofocus: true, autocomplete: "date_finality" %>
+                          </div>
+                          <div class="field">
+                            <%= f.label :salary %><br />
+                            <%= f.text_field :salary, class: "form-control form-control-user",autofocus: true, autocomplete: "salary" %>
+                          </div>
+                          <div class="field">
+                            <%= f.label :variable_salary %><br />
+                            <%= f.text_field :variable_salary, class: "form-control form-control-user",autofocus: true, autocomplete: "variable_salary" %>
+                          </div>
+                          <div class="field">
+                            <%= f.label :constitutive_compensation %><br />
+                            <%= f.text_field :constitutive_compensation, class: "form-control form-control-user",autofocus: true, autocomplete: "constitutive_compensation" %>
+                          </div>
+                          <div class="field">
+                            <%= f.label :constitutive_not_compensation %><br />
+                            <%= f.text_field :constitutive_not_compensation, class: "form-control form-control-user",autofocus: true, autocomplete: "constitutive_not_compensation" %>
+                          </div>
+                          <div class="field">
+                            <%= f.label :contract %><br />
+                            <%= f.text_field :contract, class: "form-control form-control-user",autofocus: true, autocomplete: "contract" %>
+                          </div>
+                          <div class="field">
+                            <%= f.label :address %><br />
+                            <%= f.text_field :address, class: "form-control form-control-user",autofocus: true, autocomplete: "address" %>
+                          </div>
+                          <div class="field">
+                            <%= f.label :neighborhood %><br />
+                            <%= f.text_field :neighborhood, class: "form-control form-control-user",autofocus: true, autocomplete: "neighborhood" %>
+                          </div>
+                          <div class="field">
+                            <%= f.label :phone %><br />
+                            <%= f.text_field :phone, class: "form-control form-control-user",autofocus: true, autocomplete: "phone" %>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-4">
+                        <div class="p-4">
+                          <div class="field">
+                            <%= f.label :marital_status %><br />
+                            <%= f.text_field :marital_status, class: "form-control form-control-user",autofocus: true, autocomplete: "marital_status" %>
+                          </div>
+                          <div class="field">
+                            <%= f.label :profession %><br />
+                            <%= f.text_field :profession, class: "form-control form-control-user",autofocus: true, autocomplete: "profession" %>
+                          </div>
+                          <div class="field">
+                            <%= f.label :eps %><br />
+                            <%= f.text_field :eps, class: "form-control form-control-user",autofocus: true, autocomplete: "eps" %>
+                          </div>
+                          <div class="field">
+                            <%= f.label :afp %><br />
+                            <%= f.text_field :afp, class: "form-control form-control-user",autofocus: true, autocomplete: "afp" %>
+                          </div>
+                          <div class="field">
+                            <%= f.label :photo %><br />
+                            <%= f.text_field :photo, class: "form-control form-control-user",autofocus: true, autocomplete: "photo" %>
+                          </div>
+                          <div class="form-group">
+                            <%= f.label :rol, class: 'contro-label' %>
+                            <div class="col-md-12 form-control form-control-user">
+                              <div class="input-group">
+                                <span class="input-group-addon">
+                                  <span class="glyphicon glyphicon-plane"></span>
+                                </span>
+                                <select name="user[rol_id]" id="rol_id" class="form-control form-control-user"></select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="field">
+                            <%= f.label :email %><br />
+                            <%= f.text_field :email, class: "form-control form-control-user",autofocus: true, autocomplete: "email" %>
+                          </div>
+                          <div class="field">
+                            <%= f.label :password %>
+                            <% if @minimum_password_length %>
+                              <em>(<%= @minimum_password_length %> characters minimum)</em>
+                            <% end %><br />
+                            <%= f.password_field :password, class: "form-control form-control-user", autocomplete: "new-password" %>
+                          </div>
+                          <div class="field">
+                            <%= f.label :password_confirmation %><br />
+                            <%= f.password_field :password_confirmation, class: "form-control form-control-user", autocomplete: "new-password" %>
+                          </div>
+                          <div class="actions p-3">
+                            <%= f.submit class:"btn btn-dark btn-user btn-block" %>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%# Rols %>
+        <script type="text/javascript">
+          $(document).ready(function(){
+              $("#rol_id").select2({
+                  width: "330px",
+                  minimumInputlength: 1,
+                  debug: true,
+                  ajax: {
+                      url: "<%= rols_path(format: :json) %>",
+                      dataType: 'json',
+                      delay: 250,
+                      data: function (params){
                           return {
-                              text:`${rol.name}`,
-                              id: rol.id
-                          }
-                      })
-                  }
-              },
-              cache:true
-          },
-          escapeMarkup: function (markup) { return markup; },
-          theme: "bootstrap",
-          placeholder: "Escriba un caracter"
-      });
-      $("#user_business").select2({
-          width: "330px",
-          minimumInputlength: 1,
-          debug: true,
-          ajax: {
-              url: "<%= businesses_path(format: :json) %>",
-              dataType: 'json',
-              delay: 250,
-              data: function (params){
-                  return {
-                      type: "select2",
-                      q: params.term
-                  };
-              },
-              processResults: function (data, page) {
-                  return {
-                      results: $.map(data, function (business) {
+                              type: "select2",
+                              q: params.term
+                          };
+                      },
+                      processResults: function (data, page) {
                           return {
-                              text:`${business.name}`,
-                              id: business.id
+                              results: $.map(data, function (rol) {
+                                  return {
+                                      text:`${rol.name}`,
+                                      id: rol.id
+                                  }
+                              })
                           }
-                      })
-                  }
-              },
-              cache:true
-          },
-          escapeMarkup: function (markup) { return markup; },
-          theme: "bootstrap",
-          placeholder: "Escriba un caracter"
-      });
-  });
-</script>
+                      },
+                      cache:true
+                  },
+                  escapeMarkup: function (markup) { return markup; },
+                  theme: "bootstrap",
+                  placeholder: "Escriba un caracter"
+              });
+              $("#user_business").select2({
+                  width: "330px",
+                  minimumInputlength: 1,
+                  debug: true,
+                  ajax: {
+                      url: "<%= businesses_path(format: :json) %>",
+                      dataType: 'json',
+                      delay: 250,
+                      data: function (params){
+                          return {
+                              type: "select2",
+                              q: params.term
+                          };
+                      },
+                      processResults: function (data, page) {
+                          return {
+                              results: $.map(data, function (business) {
+                                  return {
+                                      text:`${business.name}`,
+                                      id: business.id
+                                  }
+                              })
+                          }
+                      },
+                      cache:true
+                  },
+                  escapeMarkup: function (markup) { return markup; },
+                  theme: "bootstrap",
+                  placeholder: "Escriba un caracter"
+              });
+          });
+        </script>

@@ -26,34 +26,42 @@
       </div>
     </div>
   </div>
-  <div class="card border-left-warning shadow h-100 py-2">
-    <div class="card-body">
-      <div class="row no-gutters align-items-center">
-        <div class="col mr-2">
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th> Apply</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @permissions.each do |permission| %>
+  <% if current_user.can?(LongportRrhh::VIEW_PERMISSION) %>
+    <div class="container-fluid">
+      <div class="card shadow mb-4">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped" id="tbl_permissions" width="100%" cellspacing="0">
+              <thead class="bg-dark text-white rounded">
                 <tr>
-                  <td><%= permission.name %></td>
-                  <td><%= check_box_tag "permissions[apply][]", permission.code, @rol.can?(permission.code), class: 'permissions_apply'%></td>
+                  <th>Name</th>
+                  <th> Apply</th>
                 </tr>
-              <% end %>
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                <% @permissions.each do |permission| %>
+                  <tr>
+                    <td><%= permission.name %></td>
+                    <td><%= check_box_tag "permissions[apply][]", permission.code, @rol.can?(permission.code), class: 'permissions_apply'%></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
 </div>
 <script type="text/javascript">
   $(document).ready(function(){
     status_permission();
+    $("#tbl_permissions").DataTable({
+    columnDefs: [{
+      targets: [1],
+      orderable: false
+    }]
+  });
   });
   function status_permission(){
     $.each($(".permissions_apply"), function(index){

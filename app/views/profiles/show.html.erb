@@ -1,69 +1,71 @@
 <%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
 <div class="row justify-content-center m-0">
   <div class="col-4 bg-dark text-white rounded p-4">
-
-  <%= hidden_field_tag 'user_id', @user.id %>
-
+    <%= hidden_field_tag 'user_id', @user.id %>
     <p>
       <strong>Name:</strong>
       <%= @user.name %>
     </p>
-
     <p>
       <strong>Email :</strong>
       <%= @user.email %>
     </p>
-
     <p>
       <strong>Rol:</strong>
       <%= @user.rol_id %>
     </p>
-
     <%= link_to 'Edit', edit_profile_path(@user) %> |
     <%= link_to 'Back', profiles_path %>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped" id="tbl_permissions" width="100%" cellspacing="0">
+          <thead class="bg-dark text-white rounded">
+            <tr>
+              <th>Name</th>
+              <th> Apply</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @permissions.each do |permission| %>
+              <tr>
+                <td><%= permission.name %></td>
+                <td><%= check_box_tag "permissions[apply][]", permission.code, @user.can?(permission.code), class: 'permissions_apply'%></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-
-    <table>
-    <thead>
-        <tr>
-        <th>Name</th>
-        <th> Apply</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <% @permissions.each do |permission| %>
-        <tr>
-          <td><%= permission.name %></td>
-          <td><%= check_box_tag "permissions[apply][]", permission.code, @user.can?(permission.code), class: 'permissions_apply'%></td>
-        </tr>
-        <% end %>
-    </tbody>
-    </table>
-    <script type="text/javascript">
-    $(document).ready(function(){
-      status_permission();
-    });
-    function status_permission(){
-      $.each($(".permissions_apply"), function(index){
-        $(this).click(function(){
-          if($(this).is(":checked")){
-              edit_status_permission({
-                code: $(this).val(),
-                apply: true,
-                user_id: $("#user_id").val()
-              })
-          }
-          else {
-              edit_status_permission({
-              code: $(this).val(),
-              apply: false,
-              user_id: $("#user_id").val()
-              })
-          }
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    status_permission();
+    $("#tbl_permissions").DataTable();
+  });
+  function status_permission(){
+    $.each($(".permissions_apply"), function(index){
+      $(this).click(function(){
+        if($(this).is(":checked")){
+          edit_status_permission({
+            code: $(this).val(),
+            apply: true,
+            user_id: $("#user_id").val()
+          })
+        }
+        else {
+          edit_status_permission({
+          code: $(this).val(),
+          apply: false,
+          user_id: $("#user_id").val()
+          })
+        }
       });
-    });  
+    });
   }
   function edit_status_permission(oParams){
     $.ajax({
@@ -91,7 +93,7 @@
         console.log(a);
         console.log(b);
         console.log(c);
-        
+
         Swal.fire({
           position: 'top-end',
           icon: 'error',
@@ -103,5 +105,4 @@
       }
     })
   }
-  
-    </script>
+</script>
