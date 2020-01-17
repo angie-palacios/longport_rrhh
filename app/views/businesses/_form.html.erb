@@ -1,57 +1,69 @@
-<%= form_with(model: business, local: true) do |form| %>
-  <% if business.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(business.errors.count, "error") %> prohibited this business from being saved:</h2>
-
-      <ul>
-      <% business.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class="container">
+  <!-- Outer Row -->
+  <div class="row justify-content-center">
+    <div class="col-xl-10 col-lg-10 col-md-9">
+      <div class="card o-hidden border-0 shadow-lg my-3">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="p-4">
+                <%= form_with(model: business, local: true) do |form| %>
+                  <% if business.errors.any? %>
+                    <div id="error_explanation">
+                      <h2><%= pluralize(business.errors.count, "error") %> prohibited this business from being saved:</h2>
+                      <ul>
+                        <% business.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
+                  <div class="field">
+                    <%= form.label :name %>
+                    <%= form.text_field :name, id: :business_name, class: "form-control form-control-user" %>
+                  </div>
+                  <div class="field">
+                    <%= form.label :nit %>
+                    <%= form.text_field :nit, id: :business_nit, class: "form-control form-control-user" %>
+                  </div>
+                  <div class="field">
+                    <%= form.label :phone %>
+                    <%= form.text_field :phone, id: :business_phone, class: "form-control form-control-user" %>
+                  </div>
+                  <div class="field">
+                    <%= form.label :address %>
+                    <%= form.text_field :address, id: :business_address, class: "form-control form-control-user" %>
+                  <div class="field">
+                    <%= form.label :site_web %>
+                    <%= form.text_field :site_web, id: :business_site_web, class: "form-control form-control-user" %>
+                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="p-4">
+                  <div class="field">
+                    <%= form.label :email %>
+                    <%= form.text_field :email, id: :business_email, class: "form-control form-control-user" %>
+                  </div>
+                  <div class="field">
+                    <%= form.label :description %>
+                    <%= form.text_area :description, id: :business_description, class: "form-control form-control-user" %>
+                  </div>
+                  <div class="field">
+                    <%= form.label :logo %>
+                    <%= form.text_field :logo, id: :business_logo, class: "form-control form-control-user" %>
+                  </div>
+                  <div class="actions">
+                    <%= form.submit class:"btn btn-dark btn-user btn-block my-5" %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :business_name %>
   </div>
-
-  <div class="field">
-    <%= form.label :nit %>
-    <%= form.text_field :nit, id: :business_nit %>
-  </div>
-
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.text_field :phone, id: :business_phone %>
-  </div>
-
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address, id: :business_address %>
-  </div>
-
-  <div class="field">
-    <%= form.label :site_web %>
-    <%= form.text_field :site_web, id: :business_site_web %>
-  </div>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email, id: :business_email %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description, id: :business_description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :logo %>
-    <%= form.text_field :logo, id: :business_logo %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

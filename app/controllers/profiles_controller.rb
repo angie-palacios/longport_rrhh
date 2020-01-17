@@ -1,9 +1,14 @@
 class ProfilesController < ApplicationController
-before_action :set_user, only: [:show,:edit, :update, :destroy]
+before_action :set_user, only: [:show,:edit, :update, :destroy, :edit_status_permission]
 
   # GET /users
   def index
     @users = User.all
+  end
+  
+  # GET /permissions
+  def show
+    @permissions = Permission.all
   end
 
   # GET /users/new
@@ -18,8 +23,8 @@ before_action :set_user, only: [:show,:edit, :update, :destroy]
   # POST /user/create
   def create
     @user = User.new(user_params)
-
     if @user.save
+      EmailMailer.confirmationregisterusers(@user).deliver
       redirect_to profiles_path(@user), notice: 'User was successfully created.'
     else
       render :new
@@ -41,6 +46,27 @@ before_action :set_user, only: [:show,:edit, :update, :destroy]
     redirect_to profiles_url, notice: 'User was successfully destroyed.'
   end
 
+def edit_status_permission
+    if params[:apply] && params[:apply] == "true"
+      @user.permissions << Permission.find_by(:code => params[:code])
+    else
+      permission=@user.permissions.find_by(:code => params[:code])
+      # puts "-----------------------------------------"
+      # puts permission.as_json
+      puts @user.permissions.as_json
+      # puts "-----------------------------------------"
+      @user.permissions.delete(permission)
+    end
+
+    respond_to do | format |
+      format.json {
+        render json: {
+          :message => 'ok'
+        }
+      }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -48,7 +74,7 @@ before_action :set_user, only: [:show,:edit, :update, :destroy]
     end
 
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :business, :status, :documentation, :name, :date_initiated, :analytical_account, :position, :sex, :date_birth, :date_finality, :salary, :variable_salary, :constitutive_compensation, :constitutive_not_compensation, :contract, :address, :neighborhood, :phone, :marital_status, :profession, :eps, :afp, :photo, :rol_id)
+      params.require(:user).permit(:email, :password, :password_confirmation, :business_id, :status, :documentation, :name, :date_initiated, :analytical_account, :position, :sex, :date_birth, :date_finality, :salary, :variable_salary, :constitutive_compensation, :constitutive_not_compensation, :contract, :address, :neighborhood, :phone, :marital_status, :profession, :eps, :afp, :photo, :rol_id)
     end
 
 end

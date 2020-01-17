@@ -11,7 +11,15 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require jquery3
-//= require popper
-//= require bootstrap-sprockets
-//= require_tree .
+
+// las siguientes librerias son del template en uso
+//= require vendor/jquery/jquery.min.js
+//= require vendor/bootstrap/js/bootstrap.bundle.min.js
+//= require vendor/jquery-easing/jquery.easing.min.js
+
+//= require js/sb-admin-2.min.js
+//= require vendor/datatables/jquery.dataTables.min.js
+//= require vendor/datatables/dataTables.bootstrap4.min.js
+//= require js/demo/datatables-demo.js
+
+//= require select2-full

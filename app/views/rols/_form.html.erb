@@ -1,32 +1,45 @@
-<%= form_with(model: rol, local: true) do |form| %>
-  <% if rol.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(rol.errors.count, "error") %> prohibited this rol from being saved:</h2>
-
-      <ul>
-      <% rol.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class="container">
+  <!-- Outer Row -->
+  <div class="row justify-content-center">
+    <div class="col-xl-6 col-lg-10 col-md-9">
+      <div class="card o-hidden border-0 shadow-lg my-3">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="p-4">
+                <%= form_with(model: rol, local: true, class: "") do |form| %>
+                  <% if rol.errors.any? %>
+                    <div id="error_explanation">
+                      <h2><%= pluralize(rol.errors.count, "error") %> prohibited this rol from being saved:</h2>
+                      <ul>
+                        <% rol.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
+                  <div class="field">
+                    <%= form.label :code %>
+                    <%= form.text_field :code, id: :rol_code, class: "form-control form-control-user" %>
+                  </div>
+                  <div class="field">
+                    <%= form.label :name %>
+                    <%= form.text_field :name, id: :rol_name, class: "form-control form-control-user" %>
+                  </div>
+                  <div class="field">
+                    <%= form.label :description %>
+                    <%= form.text_field :description, id: :rol_description, class: "form-control form-control-user" %>
+                  </div>
+                  <div>
+                    <%= form.submit class:"btn btn-dark btn-user btn-block my-3" %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :code %>
-    <%= form.text_field :code, id: :rol_code %>
   </div>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :rol_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description, id: :rol_description %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

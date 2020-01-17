@@ -1,31 +1,63 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Rols</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Code</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @rols.each do |rol| %>
-      <tr>
-        <td><%= rol.code %></td>
-        <td><%= rol.name %></td>
-        <td><%= rol.description %></td>
-        <td><%= link_to 'Show', rol %></td>
-        <td><%= link_to 'Edit', edit_rol_path(rol) %></td>
-        <td><%= link_to 'Destroy', rol, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Rol', new_rol_path %>
+<div class="container-fluid">
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h1 class="m-0 font-weight-bold">Roles</h1>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped" id="tbl_rols" width="100%" cellspacing="0">
+          <thead class="bg-dark text-white rounded">
+            <tr>
+              <th>Code</th>
+              <th>Name</th>
+              <th>Description</th>
+              <th></th>
+              <% if current_user.can?(LongportRrhh::EDIT_USER) %>
+                <th></th>
+              <% end %>
+              <% if current_user.can?(LongportRrhh::DELETE_USER) %>
+                <th></th>
+              <% end %>
+            </tr>
+          </thead>
+          <tbody>
+            <% @rols.each do |rol| %>
+              <tr>
+                <td><%= rol.code %></td>
+                <td><%= rol.name %></td>
+                <td><%= rol.description %></td>
+                <td class="text-warning" >
+                  <i class="fas fa-list-alt"></i>
+                  <%= link_to 'Show', rol, class: "text-warning" %>
+                </td>
+                <% if current_user.can?(LongportRrhh::EDIT_USER) %>
+                  <td class="text-warning" >
+                    <i class="fas fa-pen"></i>
+                    <%= link_to 'Edit', edit_rol_path(rol), class: "text-warning" %>
+                  </td>
+                <% end %>
+                <% if current_user.can?(LongportRrhh::DELETE_USER) %>
+                  <td class="text-warning" >
+                    <i class="fas fa-trash-alt"></i>
+                    <%= link_to 'Destroy', rol, method: :delete, data: { confirm: 'Are you sure?' }, class: "text-warning" %>
+                  </td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#tbl_rols").DataTable({
+    columnDefs: [{
+      targets: [3,4,5],
+      orderable: false
+    }]
+  });
+  });
+</script>
