@@ -11,6 +11,7 @@
             <th>Name</th>
             <th>Rol</th>
             <th>Email</th>
+            <th>creado</th>
             <th></th>
             <th></th>
             <th></th>
@@ -24,6 +25,7 @@
                 <td><%= user.name %></td>
                 <td><%= user.rol_id %></td>
                 <td><%= user.email %></td>
+                <td><%= user.created_at %></td>
                 <td><%= link_to 'Show', profile_path(user) %></td>
                 <td><%= link_to 'Edit', edit_profile_path(user) %></td>
                 <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -39,7 +41,7 @@
   $(document).ready(function(){
     $("#tbl_users").DataTable({
     columnDefs: [{
-      targets: [3,4,5],
+      targets: [3,4,5,6],
       orderable: false
     }]
   });
