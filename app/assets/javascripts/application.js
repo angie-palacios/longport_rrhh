@@ -23,3 +23,4 @@
 //= require js/demo/datatables-demo.js
 
 //= require select2-full
+//= require sweetalert2
