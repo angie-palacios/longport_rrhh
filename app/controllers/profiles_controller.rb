@@ -4,6 +4,14 @@ before_action :set_user, only: [:show,:edit, :update, :destroy, :edit_status_per
   # GET /users
   def index
     @users = User.all
+    respond_to do | format |
+      format.html
+      format.json {
+        if params.has_key?(:type) && params[:type] == "select2"
+          render json: User.select2(params[:q])
+        end
+      }
+    end
   end
   
   # GET /permissions
@@ -23,11 +31,14 @@ before_action :set_user, only: [:show,:edit, :update, :destroy, :edit_status_per
   # POST /user/create
   def create
     @user = User.new(user_params)
-    if @user.save
-      EmailMailer.confirmationregisterusers(@user).deliver
-      redirect_to profiles_path(@user), notice: 'User was successfully created.'
-    else
-      render :new
+    respond_to do | format |
+      if @user.save
+        EmailMailer.confirmationregisterusers(@user).deliver
+        format.html {redirect_to profile_path(@user), notice: 'User was successfully created.'}
+        format.json {render :show, status: :created, location: @user}
+      else
+        render :new
+      end
     end
   end
 

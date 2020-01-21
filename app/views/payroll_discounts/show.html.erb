@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+<div class="row justify-content-center m-0">
+  <div class="col-4 bg-dark text-white rounded p-4">
+    <p>
+      <strong>User:</strong>
+      <%= @payroll_discount.user.name %>
+    </p>
+    <p>
+      <strong>Value discount:</strong>
+      <%= @payroll_discount.value_discount %>
+    </p>
+    <p>
+      <strong>Month discount:</strong>
+      <%= @payroll_discount.month_discount %>
+    </p>
+    <p>
+      <strong>Concept:</strong>
+      <%= @payroll_discount.concept %>
+    </p>
+    <%= link_to 'Edit', edit_payroll_discount_path(@payroll_discount) %> |
+    <%= link_to 'Back', payroll_discounts_path %>
+  </div>
+</div>

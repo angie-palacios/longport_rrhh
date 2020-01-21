@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+<div class="container-fluid">
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h1 class="m-0 font-weight-bold">Payroll Discounts</h1>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped" id="tbl_payroll_discount" width="100%" cellspacing="0">
+          <thead class="bg-dark text-white rounded">
+            <tr>
+              <th>User</th>
+              <th>Value discount</th>
+              <th>Month discount</th>
+              <th>Concept</th>
+              <th colspan="3">Options</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @payroll_discounts.each do |payroll_discount| %>
+              <tr>
+                <td><%= payroll_discount.user.name %></td>
+                <td><%= payroll_discount.value_discount %></td>
+                <td><%= payroll_discount.month_discount %></td>
+                <td><%= payroll_discount.concept %></td>
+                <td><%= link_to 'Show', payroll_discount %></td>
+                <td><%= link_to 'Edit', edit_payroll_discount_path(payroll_discount) %></td>
+                <td><%= link_to 'Destroy', payroll_discount, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#tbl_payroll_discount").DataTable({
+    columnDefs: [{
+      targets: [4,5,6],
+      orderable: false
+    }]
+  });
+  });
+</script>

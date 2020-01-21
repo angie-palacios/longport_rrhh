@@ -1,0 +1,109 @@
+<div class="container">
+  <!-- Outer Row -->
+  <div class="row justify-content-center">
+    <div class="col-xl-8 col-lg-5 col-md-6">
+      <div class="card o-hidden border-0 shadow-lg my-3">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+            <div class="col-lg-6">
+              <%= form_with(model: payroll_discount, local: true) do |form| %>
+                <div class="p-4">
+                  <% if payroll_discount.errors.any? %>
+                    <div id="error_explanation">
+                      <h2><%= pluralize(payroll_discount.errors.count, "error") %> prohibited this payroll_discount from being saved:</h2>
+                      <ul>
+                        <% payroll_discount.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
+                  <div class="form-group">
+                    <%= form.label :document, class: 'contro-label' %>
+                    <div class="col-md-12 form-control form-control-user">
+                      <div class="input-group">
+                        <span class="input-group-addon ">
+                          <span class="glyphicon glyphicon-plane"></span>
+                        </span>
+                        <select name="payroll_discount[user_id]" id="payroll_discount_users" class="form-control form-control-user">
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <%= form.label :name %>
+                    <%= form.text_field :name, id: :payroll_discount_name, class: "form-control form-control-user"%>
+                  </div>
+                  <div class="field">
+                    <%= form.label :analytical_account %>
+                    <%= form.text_field :analytical_accoouny, id: :payroll_discount_analytical_account, class: "form-control form-control-user" %>
+                  </div>
+                  <div class="field">
+                    <%= form.label :value_discount %>
+                    <%= form.text_field :value_discount, id: :payroll_discount_value_discount, class: "form-control form-control-user" %>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="p-4">
+                  <div class="field">
+                    <%= form.label :month_discount %>
+                    <%= form.text_field :month_discount, id: :payroll_discount_month_discount, class: "form-control form-control-user" %>
+                  </div>
+                  <div class="field">
+                    <%= form.label :concept %>
+                    <%= form.text_area :concept, id: :payroll_discount_concept, class: "form-control form-control-user" %>
+                  </div>
+                  <div class="actions p-3">
+                    <%= form.submit class:"btn btn-dark btn-user btn-block" %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+  $("#payroll_discount_users").select2({
+    width: "330px",
+    minimumInputlength: 1,
+    debug: true,
+    ajax: {
+      url: "<%= profiles_path(format: :json) %>",
+      dataType: 'json',
+      delay: 250,
+      data: function (params){
+        return {
+          type: "select2",
+          q: params.term
+        };
+      },
+      processResults: function (data, page) {
+        return {
+          results: $.map(data, function (user) {
+            return {
+              text:`${user.documentation }`,
+              analytical_account:`${user.analytical_account}`,
+              name: `${user.name}`,
+              id: user.id
+            }
+          })
+        }
+      },
+      cache:true
+    },
+    escapeMarkup: function (markup) { return markup; },
+    theme: "bootstrap",
+    placeholder: "Escriba un caracter"
+  }).on('select2:select', function(e){
+    let oOption = e.params.data;
+    $('#payroll_discount_name').val(oOption.name);
+    $('#payroll_discount_analytical_account').val(oOption.analytical_account);
+  });
+  });
+</script>
