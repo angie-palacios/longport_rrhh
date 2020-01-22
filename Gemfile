@@ -68,5 +68,9 @@ gem "select2-rails"
 # Select2 is a jQuery based replacement for select boxes. It supports searching, remote data sets, and infinite scrolling of results.
 gem "select2-rails"
 
-# 
+# Bootstrap 4 alerts beautifull
 gem 'sweetalert2', '~> 7.25', '>= 7.25.6'
+
+# Wicked PDF uses the shell utility wkhtmltopdf to serve a PDF file to a user from HTML
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
