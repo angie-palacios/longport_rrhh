@@ -20,7 +20,7 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'therubyracer', platforms: :ruby
 
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
+# gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -68,5 +68,13 @@ gem "select2-rails"
 # Select2 is a jQuery based replacement for select boxes. It supports searching, remote data sets, and infinite scrolling of results.
 gem "select2-rails"
 
-# 
+# Bootstrap 4 alerts beautifull
 gem 'sweetalert2', '~> 7.25', '>= 7.25.6'
+
+# Wicked PDF uses the shell utility wkhtmltopdf to serve a PDF file to a user from
+
+# gem 'rmagick'
+gem 'carrierwave'
+gem 'bootstrap-filestyle-rails'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
