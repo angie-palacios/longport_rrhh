@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <%= wicked_pdf_stylesheet_link_tag "pdf" -%>
+    <%= wicked_pdf_javascript_include_tag "number_pages" %>
+  </head>
+  <body onload='number_pages' class='pdf-body'>
+    <div class="row justify-content-center m-0 font-verdana">
+      <div class="col-9 bg-white rounded p-4">
+        <table class="table table-bordered" style="border: 1px solid black">
+          <tr>
+            <td class="w-25 border border-dark text-center"><%= image_tag '1.jpg', class: "w-75" %></td>
+            <td class="w-50 border border-dark align-middle"><b>AUTORIZACION DE DESCUENTO POR NOMINA</b></td>
+            <td class="w-25 border border-dark">
+              <b>CODIGO: A1-P1-F11 <br>
+                VERSION: 3 <br>
+                F.V: 22/01/2020
+              </b>
+            </td>
+          </tr>
+          <tr>
+            <td class="border border-dark" colspan="3">
+              <p><b>FECHA: </b><%= @payroll_discount.updated_at %>, <!-- <%= I18n.l(Date.today, format: '%A, %d de %B de %Y') %> --></p>
+              <p>Yo, <%= @payroll_discount.user.name %> identificado(a) con la cedula de ciudadania N°.	<%= @payroll_discount.user.documentation %> autorizo a la compañia para que se me sea descontado por nomina o de mi liquidacion en caso de retiro, la suma de COP $ <%= @payroll_discount.value_discount %> pesos.</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="border border-dark" colspan="3">
+              <p >Solicitud sean descontados en los meses de: <br>
+                <%= @payroll_discount.month_discount %></p>
+            </td>
+          </tr>
+          <tr>
+            <td class="border border-dark" colspan="3">
+              <p >Por concepto de <%= @payroll_discount.concept %></p>
+            </td>
+          </tr>
+          <tr>
+            <td class="border border-dark" colspan="2" class="text-justify">
+              <hr class="w-50 m-0 mt-5 border border-dark">
+              <p>FIRMA Y C.C. <%= @payroll_discount.user.documentation %></p>
+              <p>PROYECTO: <%= @payroll_discount.user.analytical_account %></p>
+            </td>
+            <td class="p-1 border border-dark text-center">
+              <%= image_tag 'huella.jpg', class: "w-50 mt-3" %>
+              <p class="">indice derecho</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

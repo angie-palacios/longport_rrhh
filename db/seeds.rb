@@ -41,49 +41,23 @@ unless Rol.where(:name => "User/Usuario").exists?
     :description => "User/Usuario"
   })
 end
+unless User.where(:email => "adsi2.co@longportaviation.com").exists?
+  User.create({
+    :name => "Angie",
+    :date_birth => "2000-04-16",
+    :email => "adsi2.co@longportaviation.com",
+    :password => "123456",
+    :password_confirmation => "123456",
+    :rol_id => Rol.first.id
+  })
+end
 unless User.where(:email => "angie@gmail.com").exists?
   User.create({
+    :name => "Angie",
+    :date_birth => "2000-04-16",
     :email => "angie@gmail.com",
     :password => "123456",
     :password_confirmation => "123456",
-    :documentation => "1000792143",
-    :name => "Angie Camila Palacios Pedraza",
-    :date_initiated => "2019-07-02",
-    :analytical_account => "OVH",
-    :position => "AUXILIAR EN GESTION HUMANA",
-    :sex => "FEMENINO",
-    :date_birth => "2000-04-16",
-    :salary => "877.803",
-    :contract => "TERMINO INDEFINIDO",
-    :address => "CARRERA 38 #13-126",
-    :neighborhood => "SOACHA - CIUDAD VERDE",
-    :phone => "317 870 8553 / 902 6038",
-    :marital_status => "SOLTERA",
-    :profession => "TEGNOLOGO EN ANALISIS Y DESARROLLO EN SISTEMAS DE INFORMACION",
-    :eps => "FAMISANAR",
-    :afp => "SURA",
-  })
-end
-unless User.where(:email => "camila@gmail.com").exists?
-  User.create({
-    :email => "camila@gmail.com",
-    :password => "123456",
-    :password_confirmation => "123456",
-    :documentation => "1000792144",
-    :name => "Camila Palacios Pedraza",
-    :date_initiated => "2019-07-02",
-    :analytical_account => "TECH",
-    :position => "AUXILIAR EN GESTION HUMANA",
-    :sex => "FEMENINO",
-    :date_birth => "2000-04-16",
-    :salary => "877.803",
-    :contract => "TERMINO INDEFINIDO",
-    :address => "CARRERA 38 #13-126",
-    :neighborhood => "SOACHA - CIUDAD VERDE",
-    :phone => "317 870 8553 / 902 6038",
-    :marital_status => "SOLTERA",
-    :profession => "TEGNOLOGO EN ANALISIS Y DESARROLLO EN SISTEMAS DE INFORMACION",
-    :eps => "SANITAS",
-    :afp => "SURA",
+    :rol_id => Rol.first.id
   })
 end

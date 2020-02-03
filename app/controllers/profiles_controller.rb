@@ -31,21 +31,18 @@ before_action :set_user, only: [:show,:edit, :update, :destroy, :edit_status_per
   # POST /user/create
   def create
     @user = User.new(user_params)
-    respond_to do | format |
-      if @user.save
-        EmailMailer.confirmationregisterusers(@user).deliver
-        format.html {redirect_to profile_path(@user), notice: 'User was successfully created.'}
-        format.json {render :show, status: :created, location: @user}
-      else
-        render :new
-      end
+    if @user.save
+      EmailMailer.confirmationregisterusers(@user).deliver
+      redirect_to profile_path(@user), notice: 'User was successfully created.'
+    else
+      render :new
     end
   end
 
      # PATCH/PUT /users/1
    def update
     if @user.update(user_params)
-      redirect_to profiles_path(@user), notice: 'User was successfully updated.'
+      redirect_to profile_path(@user), notice: 'User was successfully updated.'
     else
       render :edit
     end

@@ -239,9 +239,6 @@ end
           escapeMarkup: function (markup) { return markup; },
           theme: "bootstrap",
           placeholder: "Escriba un caracter"
-      }).on('select2:select', function(e){
-        let oOption = e.params.data;
-        $('#user_name').val(oOption.text);
-      });
+      })
   });
 </script>
