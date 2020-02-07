@@ -10,6 +10,13 @@ class PayrollDiscountsController < ApplicationController
   # GET /payroll_discounts/1
   # GET /payroll_discounts/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = PayrollDiscountPdf.new(@payroll_discount)
+        send_data pdf.render, filename: "reporte.pdf", type: "application/pdf"
+      end
+    end
   end
 
   # GET /payroll_discounts/new

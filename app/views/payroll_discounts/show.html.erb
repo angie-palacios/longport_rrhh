@@ -46,6 +46,8 @@
 <div class="row justify-content-center m-0">
   <div class="col-4 bg-dark text-white rounded p-4">
     <%= link_to 'Edit', edit_payroll_discount_path(@payroll_discount) %> |
-    <%= link_to 'Back', payroll_discounts_path %>
+    <%= link_to 'Back', payroll_discounts_path %> |
+    <%= link_to 'Download ', payroll_discount_path(@payroll_discount, format: :pdf) %>
+
   </div>
 </div>

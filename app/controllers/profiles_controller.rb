@@ -40,7 +40,7 @@ before_action :set_user, only: [:show,:edit, :update, :destroy, :edit_status_per
   end
 
      # PATCH/PUT /users/1
-   def update
+  def update
     if @user.update(user_params)
       redirect_to profile_path(@user), notice: 'User was successfully updated.'
     else
@@ -54,7 +54,7 @@ before_action :set_user, only: [:show,:edit, :update, :destroy, :edit_status_per
     redirect_to profiles_url, notice: 'User was successfully destroyed.'
   end
 
-def edit_status_permission
+  def edit_status_permission
     if params[:apply] && params[:apply] == "true"
       @user.permissions << Permission.find_by(:code => params[:code])
     else
