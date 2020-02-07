@@ -73,8 +73,6 @@ gem 'sweetalert2', '~> 7.25', '>= 7.25.6'
 
 # Wicked PDF uses the shell utility wkhtmltopdf to serve a PDF file to a user from
 
-# gem 'rmagick'
-gem 'carrierwave'
-gem 'bootstrap-filestyle-rails'
-gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
+# pdf
+gem 'prawn'
+gem 'prawn-table'
