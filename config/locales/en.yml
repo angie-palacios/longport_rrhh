@@ -1,5 +1,56 @@
 en:
   gui:
+    formats:
+      vacations:
+        headers:
+          process: "Process"
+          human_management: "HUMAN MANAGEMENT"
+          issue_date: "Issue Date: <br /> 21-October-2016"
+          vacation request: "Vacation request"
+          code_format: "Code: GH - A3-P2-F12"
+          version_date: "Version Date: <br /> 07-March-2019 </td>"
+          vacation: "vacation"
+        body:
+          day: "Day"
+          month: "Month"
+          year: "Year"
+          name: "<b> NAMES AND LAST NAMES </b>"
+          identification: "<b> No. IDENTIFICATION </b>"
+          area_project: "<b> AREA - PROJECT </b>"
+          charge: "<b>CHARGE</b>"
+          holiday_dates: "VACATION ENJOYMENT DATES"
+          text_holiday_dates: "The days I will enjoy my vacations will be distributed as follows:"
+          of_the: "Of the "
+          until_the: " until the "
+          text_period_one: "PERIOD 1: "
+          text_period_two: "PERIOD 2: "
+          title_period_requested: "PERIOD REQUESTED FOR PAYMENT"
+          text_period_requested_one: "I am paid in money "
+          text_period_requested_two: "  days, corresponding to my vacations of the period (s) between "
+          text_period_requested_tree: "  and the "
+          employee: "EMPLOYEE"
+          coordinator_project: "PROJECT COORDINATOR (ASC)"
+          manager: "AREA / STATION MANAGER"
+          coordinator_contracting: "CONTRACTING COORDINATOR"
+          name_firms: "Name: "
+          observations: "OBSERVATIONS"
+          text_null: "From day - of month - of year -"
+    messages:
     actions:
       select: "Select"
   hello: "Hello world"
+  date:
+    formats:
+      default: "%-d/%-m/%Y"
+      long: "From day %d of month %B of year %Y"
+      short: "%-d de %b %H:%M"
+    order:
+    - :day
+    - :month
+    - :year
+  time:
+    formats:
+      long: "%-d de %B de %Y"
+      longyy: "%B"
+      short: "%-d de %b %H:%M"
+  

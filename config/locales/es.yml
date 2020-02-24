@@ -1,4 +1,102 @@
 es:
+  welcome: "Bienvenido!"
   gui:
+    formats:
+      vacations:
+        headers:
+          process: "Proceso"
+          human_management: "GESTIÓN HUMANA"
+          issue_date: "Fecha de emisión: <br /> 21-Octubre-2016"
+          vacation request: "Solicitud de vacaciones"
+          code_format: "Código: GH - A3-P2-F12"
+          version_date: "Fecha de versión: <br /> 07-Marzo-2019</td>"
+          vacation: "Vacaciones"
+        body:
+          day: "Día"
+          month: "Mes"
+          year: "Año"
+          name: "<b>NOMBRES Y APELLIDOS</b>"
+          identification: "<b>No. IDENTIFICACIÓN</b>"
+          area_project: "<b> ÁREA - PROYECTO </b>"
+          charge: "<b>CARGO</b>"
+          holiday_dates: "FECHAS DE DISFRUTE DE VACACIONES"
+          text_holiday_dates: "Los días que disfrutaré de mis vacaciones se distribuirán de la siguiente manera:"
+          of_the: "Del "
+          until_the: " hasta el "
+          text_period_one: "PERIODO 1: "
+          text_period_two: "PERIODO 2: "
+          title_period_requested: "PERIODO SOLICITADO PARA PAGO"
+          text_period_requested_one: "Me sean cancelados en dinero "
+          text_period_requested_two: " días, correspondientes a mis vacaciones del / los periodo(s) entre el "
+          text_period_requested_tree: " y el "
+          employee: "EMPLEADO"
+          coordinator_project: "COORDINADOR DE PROYECTO (ASC)"
+          manager: "GERENTE DE AREA/ESTACIÓN"
+          coordinator_contracting: "COORDINADOR DE CONTRATACIÓN"
+          name_firms: "Nombre:"
+          observations: "OBSERVACIONES"
+          text_null: "día - del mes - del año -"
+    messages:
     actions:
       select: "Seleccionar"
+  date:
+    abbr_day_names:
+    - dom
+    - lun
+    - mar
+    - mié
+    - jue
+    - vie
+    - sáb
+    abbr_month_names:
+    -
+    - ene
+    - feb
+    - mar
+    - abr
+    - may
+    - jun
+    - jul
+    - ago
+    - sep
+    - oct
+    - nov
+    - dic
+    day_names:
+    - domingo
+    - lunes
+    - martes
+    - miércoles
+    - jueves
+    - viernes
+    - sábado
+    formats:
+      default: "%-d/%-m/%Y"
+      long: "día %d del mes %B del año %Y"
+      short: "%-d de %b %H:%M"
+    month_names:
+    -
+    - enero
+    - febrero
+    - marzo
+    - abril
+    - mayo
+    - junio
+    - julio
+    - agosto
+    - septiembre
+    - octubre
+    - noviembre
+    - diciembre
+    order:
+    - :day
+    - :month
+    - :year
+  time:
+    am: am
+    formats:
+      default: "%A, %-d de %B de %Y %H:%M:%S %z"
+      long: "%-d de %B de %Y"
+      longyy: "%B"
+      short: "%-d de %b %H:%M"
+    pm: pm

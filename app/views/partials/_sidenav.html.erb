@@ -4,7 +4,9 @@
   <div class="">
     <%= link_to root_path, class: 'h4 text-warning text-center' do %>
       <div >
-        <%= image_tag '1.jpg', class: "w-75" %>
+      <% if user_signed_in? %>
+        <%= image_tag (current_user.business_id).to_s + '.jpg', class: "w-75" %>
+      <% end %>
       </div>
     <% end %>
   </div>
@@ -44,7 +46,7 @@
     <div id="collapseforms" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Gestion humana</h6>
-        <%= link_to 'Actualización de datos', "#", class: "collapse-item" %>
+        <%= link_to 'Actualización de datos', edit_profile_path(current_user), class: "collapse-item" %>
         <%= link_to 'Descuento nómina', new_payroll_discount_path, class: "collapse-item" %>
         <%= link_to 'Desvinculacion', "#", class: "collapse-item" %>
         <%= link_to 'Formato de permiso', "#", class: "collapse-item" %>
