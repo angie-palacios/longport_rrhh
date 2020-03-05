@@ -1,0 +1,125 @@
+<div class="container">
+  <!-- Outer Row -->
+  <div class="row justify-content-center">
+    <div class="col-xl-6 col-lg-10 col-md-9">
+      <div class="card o-hidden border-0 shadow-lg my-3">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="p-4">
+                <%= form_with(model: vacation, local: true) do |form| %>
+                  <% if vacation.errors.any? %>
+                    <div id="error_explanation">
+                      <h2><%= pluralize(vacation.errors.count, "error") %> prohibited this vacation from being saved:</h2>
+                      <ul>
+                        <% vacation.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
+                  <div class="field">
+                    <%= form.label :user_id %>
+                    <div class="col-md-12 form-control form-control-user">
+                      <div class="input-group">
+                        <span class="input-group-addon ">
+                          <span class="glyphicon glyphicon-plane"></span>
+                        </span>
+                        <select name="vacation[user_id]" id="vacation_users" class="form-control form-control-user" required>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <%= form.label :name %>
+                    <%= form.text_field :name, id: :vacation_name, class: "form-control form-control-user"%>
+                  </div>
+                  <div class="field">
+                    <%= form.label :analytical_account %>
+                    <%= form.text_field :analytical_accoouny, id: :vacation_analytical_account, class: "form-control form-control-user" %>
+                  </div>
+                  <div class="field">
+                    <%= form.label :initial_date_first_period %>
+                    <%= form.date_field :initial_date_first_period, id: :vacation_initial_date_first_period, class: "form-control" %>
+                  </div>
+                  <div class="field">
+                    <%= form.label :finality_date_first_period %>
+                    <%= form.date_field :finality_date_first_period, id: :vacation_finality_date_first_period, class: "form-control" %>
+                  </div>
+                  <div class="field">
+                    <%= form.label :initial_date_second_period %>
+                    <%= form.date_field :initial_date_second_period, id: :vacation_initial_date_second_period, class: "form-control" %>
+                  </div>
+                  <div class="field">
+                    <%= form.label :finality_date_second_period %>
+                    <%= form.date_field :finality_date_second_period, id: :vacation_finality_date_second_period, class: "form-control" %>
+                  </div>
+                  <div class="field">
+                    <%= form.label :days_paid %>
+                    <%= form.number_field :days_paid, id: :vacation_days_paid, class: "form-control form-control-user" %>
+                  </div>
+                  <div class="field">
+                    <%= form.label :initial_date_first_pay %>
+                    <%= form.date_field :initial_date_first_pay, id: :vacation_initial_date_first_pay, class: "form-control" %>
+                  </div>
+                  <div class="field">
+                    <%= form.label :finality_date_first_pay %>
+                    <%= form.date_field :finality_date_first_pay, id: :vacation_finality_date_first_pay, class: "form-control" %>
+                  </div>
+                  <div class="field">
+                    <%= form.label :observations %>
+                    <%= form.text_area :observations, id: :vacation_observations, class: "form-control form-control-user" %>
+                  </div>
+                  <div class="actions">
+                    <%= form.submit class:"btn btn-dark btn-user btn-block my-3" %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+  $("#vacation_users").select2({
+    width: "330px",
+    minimumInputlength: 1,
+    debug: true,
+    ajax: {
+      url: "<%= profiles_path(format: :json) %>",
+      dataType: 'json',
+      delay: 250,
+      data: function (params){
+        return {
+          type: "select2",
+          q: params.term
+        };
+      },
+      processResults: function (data, page) {
+        return {
+          results: $.map(data, function (user) {
+            return {
+              text:`${user.documentation }`,
+              analytical_account:`${user.analytical_account}`,
+              name: `${user.name}`,
+              id: user.id
+            }
+          })
+        }
+      },
+      cache:true
+    },
+    escapeMarkup: function (markup) { return markup; },
+    theme: "bootstrap",
+    placeholder: "Escriba un caracter"
+  }).on('select2:select', function(e){
+    let oOption = e.params.data;
+    $('#vacation_name').val(oOption.name);
+    $('#vacation_analytical_account').val(oOption.analytical_account);
+  });
+  });
+</script>

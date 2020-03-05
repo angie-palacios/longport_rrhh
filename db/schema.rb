@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200130204243) do
+ActiveRecord::Schema.define(version: 20200209015023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,10 +108,26 @@ ActiveRecord::Schema.define(version: 20200130204243) do
     t.index ["rol_id"], name: "index_users_on_rol_id"
   end
 
+  create_table "vacations", force: :cascade do |t|
+    t.bigint "user_id"
+    t.date "initial_date_first_period"
+    t.date "finality_date_first_period"
+    t.date "initial_date_second_period"
+    t.date "finality_date_second_period"
+    t.string "days_paid"
+    t.date "initial_date_first_pay"
+    t.date "finality_date_first_pay"
+    t.text "observations"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_vacations_on_user_id"
+  end
+
   add_foreign_key "permissions_rols", "permissions"
   add_foreign_key "permissions_rols", "rols", column: "rols_id"
   add_foreign_key "permissions_users", "permissions"
   add_foreign_key "permissions_users", "users"
   add_foreign_key "users", "businesses"
   add_foreign_key "users", "rols"
+  add_foreign_key "vacations", "users"
 end

@@ -1,0 +1,153 @@
+<p id="notice"><%= notice %></p>
+<div class="row justify-content-center m-0 font-verdana">
+  <div class="col-10 bg-white rounded p-4">
+    <table class="border">
+      <tr>
+        <td class="text-center border border-dark font-weight-bold" colspan="2"><%= t("gui.formats.vacations.headers.vacation").html_safe %></td>
+        <td class="text-center border border-dark font-weight-bold"><%= t("gui.formats.vacations.headers.code_format").html_safe %></td>
+        <td rowspan="2" class="text-center border border-dark p-3" style="width: 33%;">
+          <%= image_tag (@vacation.user.business_id).to_s + '.jpg', class: "w-50" %>
+        </td>
+      </tr>
+      <tr>
+        <td class="text-center border border-dark font-weight-bold"><%= t("gui.formats.process").html_safe %></td>
+        <td class="text-center border border-dark font-weight-bold"><%= t("gui.formats.vacations.headers.issue_date").html_safe %></td>
+        <td class="text-center border border-dark font-weight-bold"><%= t("gui.formats.vacations.headers.version_date").html_safe %></td>
+      </tr>
+    </table>
+    <table class="mt-5">
+      <tr>
+        <td colspan="3" class="border border-dark text-right p-3">
+          <b>
+            <div class="d-inline-block text-center pr-5">
+              <%= t("gui.formats.vacations.body.day") %> <br />
+              <span class="font-weight-normal" ><%= @vacation.created_at.strftime("%d") %></span>
+            </div>
+            <div class="d-inline-block text-center pr-5">
+              <%= t("gui.formats.vacations.body.month") %> <br />
+              <span class="font-weight-normal" ><%= l(@vacation.created_at, :format =>:longyy) %></span>
+            </div>
+            <div class="d-inline-block text-center pr-5">
+              <%= t("gui.formats.vacations.body.year") %> <br />
+              <span class="font-weight-normal" ><%= @vacation.created_at.strftime("%Y")%></span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="text-center border border-dark p-3">
+            <b><%= t("gui.formats.vacations.body.name").html_safe %><b> <br />
+            <p class="font-weight-normal" ><%= @vacation.user.name %></p>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center border border-dark p-3">
+            <b><%= t("gui.formats.vacations.body.identification").html_safe %><b> <br>
+            <p class="font-weight-normal" ><%= @vacation.user.documentation %></p>
+          </td>
+          <td class="text-center border border-dark p-3">
+            <b><%= t("gui.formats.vacations.body.area_project").html_safe %><b><br>
+            <p class="font-weight-normal" ><%= @vacation.user.analytical_account %></p>
+          </td>
+          <td class="text-center border border-dark p-3">
+            <b><%= t("gui.formats.vacations.body.charge").html_safe %><b> <br>
+            <p class="font-weight-normal" ><%= @vacation.user.position %></p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="border border-dark font-weight-bold p-3">
+            <%= t("gui.formats.vacations.body.holiday_dates").html_safe %>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="border border-dark p-3">
+            <p>
+              <%= t("gui.formats.vacations.body.text_holiday_dates").html_safe %>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="border border-dark p-3">
+            <div class="row">
+              <div class="col-12">
+                <b><%= t("gui.formats.vacations.body.text_period_one").html_safe %></b>
+                <%= t("gui.formats.vacations.body.of_the").html_safe %>
+                <%= (@vacation.initial_date_first_period.nil?) ? t("gui.formats.vacations.body.text_null") : l(@vacation.initial_date_first_period, :format =>:long).html_safe %>
+                <%= t("gui.formats.vacations.body.until_the").html_safe %>
+                <%= (@vacation.finality_date_first_period.nil?) ? t("gui.formats.vacations.body.text_null") : l(@vacation.finality_date_first_period, :format =>:long).html_safe %>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-12">
+                <b><%= t("gui.formats.vacations.body.text_period_two").html_safe %></b>
+                <%=t("gui.formats.vacations.body.of_the").html_safe %>
+                <%= (@vacation.initial_date_second_period.nil?) ? t("gui.formats.vacations.body.text_null") : l(@vacation.initial_date_second_period, :format =>:long).html_safe %>
+                <%= t("gui.formats.vacations.body.until_the").html_safe %>
+                <%= (@vacation.finality_date_second_period.nil?) ? t("gui.formats.vacations.body.text_null") : l(@vacation.finality_date_second_period, :format =>:long).html_safe %>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="text-justify border border-dark p-3">
+            <b><%= t("gui.formats.vacations.body.title_period_requested").html_safe %></b>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="text-justify border border-dark p-3">
+            <%= t("gui.formats.vacations.body.text_period_requested_one").html_safe %>
+            <%= (@vacation.days_paid.nil?) ? " - " : @vacation.days_paid %>
+            <%= t("gui.formats.vacations.body.text_period_requested_two").html_safe %>
+            <%= (@vacation.initial_date_first_pay.nil?) ? t("gui.formats.vacations.body.text_null") : l(@vacation.initial_date_first_pay, :format =>:long).html_safe %>
+            <%= t("gui.formats.vacations.body.text_period_requested_tree").html_safe %>
+            <%= (@vacation.finality_date_first_pay.nil?) ? t("gui.formats.vacations.body.text_null") : l(@vacation.finality_date_first_pay, :format =>:long).html_safe %>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="text-center border border-dark p-4 pt-5">
+            <div class="row">
+              <div class="col-6 text-center font-weight-bold">
+                _________________________________________________ <br>
+                <%= t("gui.formats.vacations.body.employee") %> <br>
+                <br>
+                <%= t("gui.formats.vacations.body.name_firms") %> _______________________________________
+                <br>
+                C.C No.: ________________________________________
+              </div>
+              <div class="col-6 text-center font-weight-bold">
+                _______________________________________________ <br>
+                <%= t("gui.formats.vacations.body.coordinator_project") %><br>
+                <br>
+                <%= t("gui.formats.vacations.body.name_firms") %> _______________________________________
+              </div>
+            </div>
+            <div class="row pt-5">
+              <div class="col-6 text-center font-weight-bold">
+                __________________________________________________ <br>
+                <%= t("gui.formats.vacations.body.manager") %><br><br>
+                <%= t("gui.formats.vacations.body.name_firms") %> _______________________________________
+              </div>
+              <div class="col-6 text-center font-weight-bold">
+                __________________________________________________ <br>
+                <%= t("gui.formats.vacations.body.coordinator_contracting") %><br><br>
+                <%= t("gui.formats.vacations.body.name_firms") %> _______________________________________
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="text-justify border border-dark font-weight-bold p-3">
+            <%= t("gui.formats.vacations.body.observations") %>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="text-justify border border-dark p-3">
+            <%= @vacation.observations %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <%= link_to 'Edit', edit_vacation_path(@vacation) %> |
+  <%= link_to 'Back', vacations_path %>
+  <%= link_to 'Download ', vacation_path(@vacation, format: :pdf) %>

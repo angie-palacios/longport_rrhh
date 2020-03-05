@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :vacations
   resources :payroll_discounts
   resources :permissions
   resources :rols do

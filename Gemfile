@@ -76,3 +76,6 @@ gem 'sweetalert2', '~> 7.25', '>= 7.25.6'
 # pdf
 gem 'prawn'
 gem 'prawn-table'
+gem 'prawn-styled-text'
+
+gem 'rails-i18n'

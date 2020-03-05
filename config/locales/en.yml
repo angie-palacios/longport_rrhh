@@ -1,5 +1,62 @@
 en:
   gui:
+    formats:
+      process: "Process: Human Management"
+      vacations:
+        headers:    
+          issue_date: "Issue Date: <br /> 21-October-2016"
+          issue_date_pdf: "Issue Date: \n 21-October-2016"
+          code_format: "Code: GH-SV <br /> Version: 03 "
+          code_format_pdf: "Code: GH-SV \n Version: 03 "
+          version_date: "Version Date: <br /> 07-March-2019"
+          version_date_pdf: "Version Date: \n 07-March-2019"
+          vacation: "VACATION REQUEST"
+        body:
+          day: "Day"
+          month: "Month"
+          year: "Year"
+          name: "NAMES AND LAST NAMES"
+          identification: "No. IDENTIFICATION"
+          area_project: "AREA - PROJECT"
+          charge: "CHARGE"
+          holiday_dates: "VACATION ENJOYMENT DATES"
+          text_holiday_dates: "The days I will enjoy my vacations will be distributed as follows:"
+          of_the: "Of the "
+          until_the: " until the "
+          text_period_one: "<b>PERIOD 1: </b>"
+          text_period_two: "<b>PERIOD 2</b>: "
+          title_period_requested: "PERIOD REQUESTED FOR PAYMENT"
+          text_period_requested_one: "I am paid in money <b>"
+          text_period_requested_two: "</b>  days, corresponding to my vacations of the period (s) between "
+          text_period_requested_tree: "  and the "
+          employee: "EMPLOYEE"
+          coordinator_project: "PROJECT COORDINATOR (ASC)"
+          manager: "AREA / STATION MANAGER"
+          coordinator_contracting: "CONTRACTING COORDINATOR"
+          name_firms: "Name: "
+          observations: "OBSERVATIONS"
+          text_null: "From day - of month - of year -"
+      payroll_discounts:
+        headers:
+
+        body:
+
+    messages:
     actions:
       select: "Select"
   hello: "Hello world"
+  date:
+    formats:
+      default: "%-d/%-m/%Y"
+      long: "From day <b> %d </b> of month <b> %B </b> of year <b> %Y </b>"
+      short: "%-d de %b %H:%M"
+    order:
+    - :day
+    - :month
+    - :year
+  time:
+    formats:
+      long: "%-d de %B de %Y"
+      longyy: "%B"
+      short: "%-d de %b %H:%M"
+  

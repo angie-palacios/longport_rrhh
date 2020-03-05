@@ -3,7 +3,7 @@
   <div class="col-9 bg-white rounded p-4">
     <table class="table table-bordered" style="border: 1px solid black">
       <tr>
-        <td class="w-25 border border-dark text-center"><%= image_tag '1.jpg', class: "w-75" %></td>
+        <td class="w-25 border border-dark text-center"><%= image_tag (@payroll_discount.user.business_id).to_s + '.jpg', class: "w-75" %></td>
         <td class="w-50 border border-dark align-middle"><b>AUTORIZACION DE DESCUENTO POR NOMINA</b></td>
         <td class="w-25 border border-dark">
           <b>CODIGO: A1-P1-F11 <br>
@@ -14,7 +14,7 @@
       </tr>
       <tr>
         <td class="border border-dark" colspan="3">
-          <p><b>FECHA: </b><%= @payroll_discount.updated_at %>, <!-- <%= I18n.l(Date.today, format: '%A, %d de %B de %Y') %> --></p>
+          <p><b>FECHA: </b><%= @payroll_discount.updated_at.strftime("%Y-%B-%d") %>, <!-- <%= I18n.l(Date.today, format: '%A, %d de %B de %Y') %> --></p>
           <p>Yo, <%= @payroll_discount.user.name %> identificado(a) con la cedula de ciudadania N°.	<%= @payroll_discount.user.documentation %> autorizo a la compañia para que se me sea descontado por nomina o de mi liquidacion en caso de retiro, la suma de COP $ <%= @payroll_discount.value_discount %> pesos.</p>
         </td>
       </tr>
