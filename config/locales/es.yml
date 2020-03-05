@@ -2,32 +2,33 @@ es:
   welcome: "Bienvenido!"
   gui:
     formats:
+      process: "Proceso: Gestión Humana"
       vacations:
         headers:
-          process: "Proceso"
-          human_management: "GESTIÓN HUMANA"
           issue_date: "Fecha de emisión: <br /> 21-Octubre-2016"
-          vacation request: "Solicitud de vacaciones"
-          code_format: "Código: GH - A3-P2-F12"
-          version_date: "Fecha de versión: <br /> 07-Marzo-2019</td>"
-          vacation: "Vacaciones"
+          issue_date_pdf: "Fecha de emisión: \n 21-Octubre-2016"
+          code_format: "Código: GH-SV <br /> Versión: 03"
+          code_format_pdf: "Código: GH-SV \n Versión: 03"
+          version_date: "Fecha de versión: <br /> 07-Marzo-2019"
+          version_date_pdf: "Fecha de versión: \n 07-Marzo-2019"
+          vacation: "SOLICITUD DE VACACIONES"
         body:
           day: "Día"
           month: "Mes"
           year: "Año"
-          name: "<b>NOMBRES Y APELLIDOS</b>"
-          identification: "<b>No. IDENTIFICACIÓN</b>"
-          area_project: "<b> ÁREA - PROYECTO </b>"
-          charge: "<b>CARGO</b>"
+          name: "NOMBRES Y APELLIDOS"
+          identification: "No. IDENTIFICACIÓN"
+          area_project: "ÁREA - PROYECTO"
+          charge: "CARGO"
           holiday_dates: "FECHAS DE DISFRUTE DE VACACIONES"
           text_holiday_dates: "Los días que disfrutaré de mis vacaciones se distribuirán de la siguiente manera:"
           of_the: "Del "
           until_the: " hasta el "
-          text_period_one: "PERIODO 1: "
-          text_period_two: "PERIODO 2: "
+          text_period_one: "<b>PERIODO 1: </b>"
+          text_period_two: "<b>PERIODO 2: </b>"
           title_period_requested: "PERIODO SOLICITADO PARA PAGO"
-          text_period_requested_one: "Me sean cancelados en dinero "
-          text_period_requested_two: " días, correspondientes a mis vacaciones del / los periodo(s) entre el "
+          text_period_requested_one: "Me sean cancelados en dinero <b>"
+          text_period_requested_two: "</b> días, correspondientes a mis vacaciones del / los periodo(s) entre el "
           text_period_requested_tree: " y el "
           employee: "EMPLEADO"
           coordinator_project: "COORDINADOR DE PROYECTO (ASC)"
@@ -72,7 +73,7 @@ es:
     - sábado
     formats:
       default: "%-d/%-m/%Y"
-      long: "día %d del mes %B del año %Y"
+      long: "día <b> %d </b> del mes <b> %B </b> del año <b> %Y </b>"
       short: "%-d de %b %H:%M"
     month_names:
     -
