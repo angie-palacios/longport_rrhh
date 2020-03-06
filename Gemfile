@@ -78,4 +78,5 @@ gem 'prawn'
 gem 'prawn-table'
 gem 'prawn-styled-text'
 
+# translate
 gem 'rails-i18n'

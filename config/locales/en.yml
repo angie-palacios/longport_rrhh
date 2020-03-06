@@ -38,9 +38,25 @@ en:
           text_null: "From day - of month - of year -"
       payroll_discounts:
         headers:
-
+          title: "PAYROLL DISCOUNT AUTHORIZATION"
+          code_format: "Code: A1-P1-F11 <br /> Version: 03"
+          code_format_pdf: "Code: A1-P1-F11 \n Version: 03"
+          issue_date: "Issue Date: <br /> 21-August-2018"
+          issue_date_pdf: "Issue Date: \n 21-August-2018"
+          version_date: "Version Date: <br /> 06-March-2020"
+          version_date_pdf: "Version Date: \n 06-March-2020"
         body:
-
+          date: "DATE:"
+          i: "I, "
+          text_one: " identified with the citizenship card No. "
+          text_two: " I authorize the company to be discount by payroll or from my liquidation in case of withdrawal, the sum of COP $"
+          load: " load."
+          discounted: "Application be discounted in the months of: <br>"
+          discounted_pdf: "Application be discounted in the months of: \n"
+          concept: "For concept of "
+          firm: "FIRM AND C.C "
+          project: "PROJECT "
+          fingerprint: "right index"
     messages:
     actions:
       select: "Select"
@@ -49,14 +65,14 @@ en:
     formats:
       default: "%-d/%-m/%Y"
       long: "From day <b> %d </b> of month <b> %B </b> of year <b> %Y </b>"
-      short: "%-d de %b %H:%M"
+      short: "%-d of %b %H:%M"
     order:
     - :day
     - :month
     - :year
   time:
     formats:
-      long: "%-d de %B de %Y"
+      long: "%-d of %B of %Y"
       longyy: "%B"
-      short: "%-d de %b %H:%M"
+      short: "%-d of %b %H:%M"
   
