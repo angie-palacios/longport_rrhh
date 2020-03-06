@@ -37,6 +37,26 @@ es:
           name_firms: "Nombre:"
           observations: "OBSERVACIONES"
           text_null: "día - del mes - del año -"
+      payroll_discounts:
+        headers:
+          title: "AUTORIZACIÓN DE DESCUENTO POR NÓMINA"
+          code_format: "Código: A1-P1-F11 <br /> Versión: 03"
+          code_format_pdf: "Código: A1-P1-F11 \n Versión: 03"
+          issue_date: "Fecha de emisión: <br /> 21-Agosto-2018"
+          issue_date_pdf: "Fecha de emisión: \n21-Agosto-2018"
+          version_date: "Fecha de versión: <br /> 06-Marzo-2020"
+          version_date_pdf: "Fecha de versión: \n 06-Marzo-2020"
+        body:
+          date: "FECHA:"
+          i: "Yo, "
+          text_one: " identificado(a) con la cedula de ciudadania N°. "
+          text_two: " autorizo a la compañia para que se me sea descontado por nomina o de mi liquidacion en caso de retiro, la suma de COP $"
+          load: " pesos."
+          discounted: "Solicitud sean descontados en los meses de: <br>"
+          concept: "Por concepto de "
+          firm: "FIRMA Y C.C "
+          project: "PROYECTO "
+          fingerprint: "índice derecho"
     messages:
     actions:
       select: "Seleccionar"

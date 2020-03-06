@@ -3,41 +3,47 @@
   <div class="col-9 bg-white rounded p-4">
     <table class="table table-bordered" style="border: 1px solid black">
       <tr>
-        <td class="w-25 border border-dark text-center"><%= image_tag (@payroll_discount.user.business_id).to_s + '.jpg', class: "w-75" %></td>
-        <td class="w-50 border border-dark align-middle"><b>AUTORIZACION DE DESCUENTO POR NOMINA</b></td>
-        <td class="w-25 border border-dark">
-          <b>CODIGO: A1-P1-F11 <br>
-            VERSION: 3 <br>
-            F.V: 22/01/2020
-          </b>
+        <td class="text-center border border-dark font-weight-bold" colspan="2"><%= t("gui.formats.payroll_discounts.headers.title").html_safe %></td>
+        <td class="text-center border border-dark font-weight-bold"><%= t("gui.formats.payroll_discounts.headers.code_format").html_safe %></td>
+        <td rowspan="2" class="text-center border border-dark p-3" style="width: 25%;">
+          <%= image_tag (@payroll_discount.user.business_id).to_s + '.jpg', class: "w-100 pt-3" %>
         </td>
       </tr>
       <tr>
-        <td class="border border-dark" colspan="3">
-          <p><b>FECHA: </b><%= @payroll_discount.updated_at.strftime("%Y-%B-%d") %>, <!-- <%= I18n.l(Date.today, format: '%A, %d de %B de %Y') %> --></p>
-          <p>Yo, <%= @payroll_discount.user.name %> identificado(a) con la cedula de ciudadania N°.	<%= @payroll_discount.user.documentation %> autorizo a la compañia para que se me sea descontado por nomina o de mi liquidacion en caso de retiro, la suma de COP $ <%= @payroll_discount.value_discount %> pesos.</p>
+        <td class="text-center border border-dark font-weight-bold"><%= t("gui.formats.process").html_safe %></td>
+        <td class="text-center border border-dark font-weight-bold"><%= t("gui.formats.payroll_discounts.headers.issue_date").html_safe %></td>
+        <td class="text-center border border-dark font-weight-bold"><%= t("gui.formats.payroll_discounts.headers.version_date").html_safe %></td>
+      </tr>
+      <tr>
+        <td class="border border-dark" colspan="4">
+          <p>
+          <b><%= t("gui.formats.payroll_discounts.body.date").html_safe %> </b>
+          <%= l(@payroll_discount.created_at, :format =>:long) %>,
+          </p>
+          <p><%= t("gui.formats.payroll_discounts.body.i").html_safe + @payroll_discount.user.name + t("gui.formats.payroll_discounts.body.text_one").html_safe +  @payroll_discount.user.documentation + t("gui.formats.payroll_discounts.body.text_two").html_safe +  @payroll_discount.value_discount + t("gui.formats.payroll_discounts.body.load").html_safe %></p>
         </td>
       </tr>
       <tr>
-        <td class="border border-dark" colspan="3">
-          <p >Solicitud sean descontados en los meses de: <br>
-            <%= @payroll_discount.month_discount %></p>
+        <td class="border border-dark" colspan="4">
+          <p ><%= t("gui.formats.payroll_discounts.body.discounted").html_safe + @payroll_discount.month_discount %></p>
         </td>
       </tr>
       <tr>
-        <td class="border border-dark" colspan="3">
-          <p >Por concepto de <%= @payroll_discount.concept %></p>
+        <td class="border border-dark" colspan="4">
+          <p ><%=t("gui.formats.payroll_discounts.body.concept").html_safe + @payroll_discount.concept %></p>
         </td>
       </tr>
       <tr>
-        <td class="border border-dark" colspan="2" class="text-justify">
+        <td class="border border-dark" colspan="3" class="text-justify">
           <hr class="w-50 m-0 mt-5 border border-dark">
-          <p>FIRMA Y C.C. <%= @payroll_discount.user.documentation %></p>
-          <p>PROYECTO: <%= @payroll_discount.user.analytical_account %></p>
+          <p><%=t("gui.formats.payroll_discounts.body.firm").html_safe + @payroll_discount.user.documentation %></p>
+          <p><%=t("gui.formats.payroll_discounts.body.project").html_safe + @payroll_discount.user.analytical_account %></p>
         </td>
         <td class="p-1 border border-dark text-center">
           <%= image_tag 'huella.jpg', class: "w-50 mt-3" %>
-          <p class="">indice derecho</p>
+          <p class="">
+            <%= t("gui.formats.payroll_discounts.body.fingerprint").html_safe %>
+          </p>
         </td>
       </tr>
     </table>
