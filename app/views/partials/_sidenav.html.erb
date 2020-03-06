@@ -75,6 +75,7 @@
     </a>
     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
+        <%= link_to 'Agregar Ciudad', new_city_path, class: "collapse-item" %>
         <% if current_user.can?(LongportRrhh::CREATE_USER) %>
           <%= link_to 'Agregar usuario', new_profile_path, class: "collapse-item" %>
         <% end %>

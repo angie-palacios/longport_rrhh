@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+<div class="container-fluid">
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h1 class="m-0 font-weight-bold">Cities</h1>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped" id="tbl_city" width="100%" cellspacing="0">
+          <thead class="bg-dark text-white rounded">
+            <th>Code</th>
+            <th>Name es</th>
+            <th>Name en</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cities.each do |city| %>
+            <tr>
+              <td><%= city.code %></td>
+              <td><%= city.name_es %></td>
+              <td><%= city.name_en %></td>
+              <td><%= link_to 'Show', city %></td>
+              <td><%= link_to 'Edit', edit_city_path(city) %></td>
+              <td><%= link_to 'Destroy', city, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+<br>
+<%= link_to 'New City', new_city_path %>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#tbl_city").DataTable({
+      columnDefs: [{
+        targets: [4,5,6],
+        orderable: false
+      }]
+    });
+  });
+</script>
+
