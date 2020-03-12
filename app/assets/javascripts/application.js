@@ -24,3 +24,5 @@
 
 //= require select2-full
 //= require sweetalert2
+
+//= require js/highcharts/code/highcharts.js
