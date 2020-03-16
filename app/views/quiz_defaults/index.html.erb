@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Quiz Defaults</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Content</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @quiz_defaults.each do |quiz_default| %>
+      <tr>
+        <td><%= quiz_default.content %></td>
+        <td><%= link_to 'Show', quiz_default %></td>
+        <td><%= link_to 'Edit', edit_quiz_default_path(quiz_default) %></td>
+        <td><%= link_to 'Destroy', quiz_default, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Quiz Default', new_quiz_default_path %>

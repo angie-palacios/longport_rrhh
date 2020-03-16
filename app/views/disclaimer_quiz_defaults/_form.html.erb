@@ -1,0 +1,27 @@
+<%= form_with(model: disclaimer_quiz_default, local: true) do |form| %>
+  <% if disclaimer_quiz_default.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(disclaimer_quiz_default.errors.count, "error") %> prohibited this disclaimer_quiz_default from being saved:</h2>
+
+      <ul>
+      <% disclaimer_quiz_default.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :disclaimer_id %>
+    <%= form.text_field :disclaimer_id, id: :disclaimer_quiz_default_disclaimer_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quiz_default_id %>
+    <%= form.text_field :quiz_default_id, id: :disclaimer_quiz_default_quiz_default_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

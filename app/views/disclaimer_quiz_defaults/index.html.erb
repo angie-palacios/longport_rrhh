@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Disclaimer Quiz Defaults</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Disclaimer</th>
+      <th>Quiz default</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @disclaimer_quiz_defaults.each do |disclaimer_quiz_default| %>
+      <tr>
+        <td><%= disclaimer_quiz_default.disclaimer %></td>
+        <td><%= disclaimer_quiz_default.quiz_default %></td>
+        <td><%= link_to 'Show', disclaimer_quiz_default %></td>
+        <td><%= link_to 'Edit', edit_disclaimer_quiz_default_path(disclaimer_quiz_default) %></td>
+        <td><%= link_to 'Destroy', disclaimer_quiz_default, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Disclaimer Quiz Default', new_disclaimer_quiz_default_path %>

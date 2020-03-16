@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200306193316) do
+ActiveRecord::Schema.define(version: 20200316133049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,31 @@ ActiveRecord::Schema.define(version: 20200306193316) do
     t.string "name_en"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "disclaimer_quiz_defaults", force: :cascade do |t|
+    t.bigint "disclaimer_id"
+    t.bigint "quiz_default_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["disclaimer_id"], name: "index_disclaimer_quiz_defaults_on_disclaimer_id"
+    t.index ["quiz_default_id"], name: "index_disclaimer_quiz_defaults_on_quiz_default_id"
+  end
+
+  create_table "disclaimers", force: :cascade do |t|
+    t.bigint "employee_id_id"
+    t.bigint "city_id"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.bigint "creator_id_id"
+    t.bigint "business_id"
+    t.boolean "aceepted"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["business_id"], name: "index_disclaimers_on_business_id"
+    t.index ["city_id"], name: "index_disclaimers_on_city_id"
+    t.index ["creator_id_id"], name: "index_disclaimers_on_creator_id_id"
+    t.index ["employee_id_id"], name: "index_disclaimers_on_employee_id_id"
   end
 
   create_table "payroll_discounts", force: :cascade do |t|
@@ -68,6 +93,28 @@ ActiveRecord::Schema.define(version: 20200306193316) do
     t.bigint "user_id"
     t.index ["permission_id"], name: "index_permissions_users_on_permission_id"
     t.index ["user_id"], name: "index_permissions_users_on_user_id"
+  end
+
+  create_table "quiz_defaults", force: :cascade do |t|
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "quizzes", force: :cascade do |t|
+    t.bigint "disclaimer_id"
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["disclaimer_id"], name: "index_quizzes_on_disclaimer_id"
+  end
+
+  create_table "responses", force: :cascade do |t|
+    t.bigint "quiz_id"
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quiz_id"], name: "index_responses_on_quiz_id"
   end
 
   create_table "rols", force: :cascade do |t|
@@ -131,10 +178,18 @@ ActiveRecord::Schema.define(version: 20200306193316) do
     t.index ["user_id"], name: "index_vacations_on_user_id"
   end
 
+  add_foreign_key "disclaimer_quiz_defaults", "disclaimers"
+  add_foreign_key "disclaimer_quiz_defaults", "quiz_defaults"
+  add_foreign_key "disclaimers", "businesses"
+  add_foreign_key "disclaimers", "cities"
+  add_foreign_key "disclaimers", "users", column: "creator_id_id"
+  add_foreign_key "disclaimers", "users", column: "employee_id_id"
   add_foreign_key "permissions_rols", "permissions"
   add_foreign_key "permissions_rols", "rols", column: "rols_id"
   add_foreign_key "permissions_users", "permissions"
   add_foreign_key "permissions_users", "users"
+  add_foreign_key "quizzes", "disclaimers"
+  add_foreign_key "responses", "quizzes"
   add_foreign_key "users", "businesses"
   add_foreign_key "users", "rols"
   add_foreign_key "vacations", "users"

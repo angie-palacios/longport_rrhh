@@ -47,6 +47,7 @@
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Gestion humana</h6>
         <%= link_to 'Actualización de datos', edit_profile_path(current_user), class: "collapse-item" %>
+        <%= link_to 'Descargos', disclaimers_path, class: "collapse-item" %>
         <%= link_to 'Descuento nómina', new_payroll_discount_path, class: "collapse-item" %>
         <%= link_to 'Desvinculacion', "#", class: "collapse-item" %>
         <%= link_to 'Formato de permiso', "#", class: "collapse-item" %>
