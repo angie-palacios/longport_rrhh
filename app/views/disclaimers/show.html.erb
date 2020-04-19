@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Employee:</strong>
+  <%= @disclaimer.employee %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @disclaimer.city %>
+</p>
+
+<p>
+  <strong>Start at:</strong>
+  <%= @disclaimer.start_at %>
+</p>
+
+<p>
+  <strong>End at:</strong>
+  <%= @disclaimer.end_at %>
+</p>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @disclaimer.creator %>
+</p>
+
+<p>
+  <strong>Buiness:</strong>
+  <%= @disclaimer.buiness %>
+</p>
+
+<p>
+  <strong>Aceepted:</strong>
+  <%= @disclaimer.aceepted %>
+</p>
+
+<%= link_to 'Edit', edit_disclaimer_path(@disclaimer) %> |
+<%= link_to 'Back', disclaimers_path %>

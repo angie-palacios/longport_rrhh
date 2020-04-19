@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Disclaimer:</strong>
+  <%= @quiz.disclaimer %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @quiz.content %>
+</p>
+
+<%= link_to 'Edit', edit_quiz_path(@quiz) %> |
+<%= link_to 'Back', quizzes_path %>

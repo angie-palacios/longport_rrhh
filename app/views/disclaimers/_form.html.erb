@@ -1,0 +1,52 @@
+<%= form_with(model: disclaimer, local: true) do |form| %>
+  <% if disclaimer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(disclaimer.errors.count, "error") %> prohibited this disclaimer from being saved:</h2>
+
+      <ul>
+      <% disclaimer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :employee %>
+    <%= form.text_field :employee, id: :disclaimer_employee %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city_id %>
+    <%= form.text_field :city_id, id: :disclaimer_city_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_at %>
+    <%= form.datetime_select :start_at, id: :disclaimer_start_at %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_at %>
+    <%= form.datetime_select :end_at, id: :disclaimer_end_at %>
+  </div>
+
+  <div class="field">
+    <%= form.label :creator %>
+    <%= form.text_field :creator, id: :disclaimer_creator %>
+  </div>
+
+  <div class="field">
+    <%= form.label :buiness_id %>
+    <%= form.text_field :buiness_id, id: :disclaimer_buiness_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :aceepted %>
+    <%= form.check_box :aceepted, id: :disclaimer_aceepted %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

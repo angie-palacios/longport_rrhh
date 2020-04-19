@@ -1,0 +1,199 @@
+<figure class="highcharts-figure">
+  <div class="row justify-content-center">
+    <div class="col-xl-11 col-lg-11 col-md-10">
+      <div class="card o-hidden border-0 shadow-lg my-3">
+        <div class="card-body p-0">
+          <div class="row">
+            <div class="col-lg-12">
+              <div id="bar" class="p-4"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div id="line" class="p-2"></div>
+            </div>
+            <div class="col-lg-6">
+              <div id="circule" class="p-2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div id="pie"></div>
+</figure>
+<script type="text/javascript">
+  Highcharts.chart('line', {
+      chart: {
+          type: 'line'
+      },
+      title: {
+          text: 'Grafica de lineas'
+      },
+      subtitle: {
+          text: 'Ingresos y retiros de la compañia'
+      },
+      xAxis: {
+          categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+      },
+      yAxis: {
+          title: {
+              text: 'Cantidad'
+          }
+      },
+      plotOptions: {
+          line: {
+              dataLabels: {
+                  enabled: true
+              },
+              enableMouseTracking: false
+          }
+      },
+      series: [{
+          name: 'Ingresos',
+          color: 'orange',
+          data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+      }, {
+          name: 'Retiros',
+          color: 'gray',
+          data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+      }]
+  });
+  // grafica de barras
+  var chart = Highcharts.chart('bar', {
+  
+      chart: {
+          type: 'column'
+      },
+  
+      title: {
+          text: 'Graficas de barras'
+      },
+  
+      subtitle: {
+          text: 'Personal activo en el año 2019 y 2020'
+      },
+  
+      legend: {
+          align: 'right',
+          verticalAlign: 'middle',
+          layout: 'vertical'
+      },
+  
+      xAxis: {
+          categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+          labels: {
+              x: -10
+          }
+      },
+  
+      yAxis: {
+          allowDecimals: false,
+          title: {
+              text: 'Amount'
+          }
+      },
+  
+      series: [{
+          name: 'Christmas Eve',
+          color: 'orange',
+          data: [1, 4, 3, 6, 12, 1, 2, 3, 4, 5, 5,1]
+      }, {
+          name: 'Christmas Day before dinner',
+          color: 'gray',
+          data: [6, 4, 2, 1, 4, 3, 6, 12, 1, 2, 3, 12]
+      }],
+  
+      responsive: {
+          rules: [{
+              condition: {
+                  maxWidth: 500
+              },
+              chartOptions: {
+                  legend: {
+                      align: 'center',
+                      verticalAlign: 'bottom',
+                      layout: 'horizontal'
+                  },
+                  yAxis: {
+                      labels: {
+                          align: 'left',
+                          x: 0,
+                          y: -5
+                      },
+                      title: {
+                          text: null
+                      }
+                  },
+                  subtitle: {
+                      text: null
+                  },
+                  credits: {
+                      enabled: false
+                  }
+              }
+          }]
+      }
+  });
+  
+  // grafica circular
+
+  // Create the chart
+Highcharts.chart('circule', {
+    chart: {
+        type: 'pie'
+    },
+    title: {
+        text: 'Grafica circular'
+    },
+    subtitle: {
+        text: 'Cantidad de hombres y mujeres en el 2020'
+    },
+
+    accessibility: {
+        announceNewData: {
+            enabled: true
+        },
+        point: {
+            valueSuffix: '%'
+        }
+    },
+
+    plotOptions: {
+        series: {
+            dataLabels: {
+                enabled: true,
+                format: '{point.name}: {point.y:.f}'
+            }
+        }
+    },
+
+    tooltip: {
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.f}</b> of total<br/>'
+    },
+
+    series: [
+        {
+            name: "Browsers",
+            colorByPoint: true,
+            data: [
+                {
+                    name: "Mujeres",
+                    color: 'orange',
+                    y: 60,
+                    drilldown: "Mujeres"
+                },
+                {
+                    name: "Hombres",
+                    color: 'gray',
+                    y: 40,
+                    drilldown: "Hombres"
+                }
+            ]
+        }
+    ]
+});
+
+</script>

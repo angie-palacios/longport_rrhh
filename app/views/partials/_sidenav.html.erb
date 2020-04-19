@@ -47,6 +47,7 @@
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Gestion humana</h6>
         <%= link_to 'Actualización de datos', edit_profile_path(current_user), class: "collapse-item" %>
+        <%= link_to 'Descargos', disclaimers_path, class: "collapse-item" %>
         <%= link_to 'Descuento nómina', new_payroll_discount_path, class: "collapse-item" %>
         <%= link_to 'Desvinculacion', "#", class: "collapse-item" %>
         <%= link_to 'Formato de permiso', "#", class: "collapse-item" %>
@@ -75,6 +76,7 @@
     </a>
     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
+        <%= link_to 'Agregar Ciudad', new_city_path, class: "collapse-item" %>
         <% if current_user.can?(LongportRrhh::CREATE_USER) %>
           <%= link_to 'Agregar usuario', new_profile_path, class: "collapse-item" %>
         <% end %>
