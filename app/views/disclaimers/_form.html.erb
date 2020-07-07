@@ -11,14 +11,30 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :employee %>
-    <%= form.text_field :employee, id: :disclaimer_employee %>
+  <div class="form-group">
+  <%= form.label :employee, class: 'contro-label' %>
+    <div class="col-md-12 form-control form-control-user">
+      <div class="input-group">
+        <span class="input-group-addon ">
+          <span class="glyphicon glyphicon-plane"></span>
+        </span>
+        <select name="disclaimer[employee_id]" id="disclaimer_employee_id" class="form-control form-control-user">
+        </select>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :city_id %>
-    <%= form.text_field :city_id, id: :disclaimer_city_id %>
+  <div class="form-group">
+  <%= form.label :city_id, class: 'contro-label' %>
+    <div class="col-md-12 form-control form-control-user">
+      <div class="input-group">
+        <span class="input-group-addon ">
+          <span class="glyphicon glyphicon-plane"></span>
+        </span>
+        <select name="disclaimer[city_id]" id="city_id" class="form-control form-control-user">
+        </select>
+      </div>
+    </div>
   </div>
 
   <div class="field">
@@ -31,14 +47,17 @@
     <%= form.datetime_select :end_at, id: :disclaimer_end_at %>
   </div>
 
-  <div class="field">
-    <%= form.label :creator %>
-    <%= form.text_field :creator, id: :disclaimer_creator %>
-  </div>
-
-  <div class="field">
-    <%= form.label :buiness_id %>
-    <%= form.text_field :buiness_id, id: :disclaimer_buiness_id %>
+  <div class="form-group">
+  <%= form.label :business_id, class: 'contro-label' %>
+    <div class="col-md-12 form-control form-control-user">
+      <div class="input-group">
+        <span class="input-group-addon ">
+          <span class="glyphicon glyphicon-plane"></span>
+        </span>
+        <select name="disclaimer[business_id]" id="business_id" class="form-control form-control-user">
+        </select>
+      </div>
+    </div>
   </div>
 
   <div class="field">
@@ -46,7 +65,120 @@
     <%= form.check_box :aceepted, id: :disclaimer_aceepted %>
   </div>
 
+  <% if @quiz_defaults%>
+    <% @quiz_defaults.each do |qd| %>
+      <br>
+      <label for=""><%= qd.content %></label>
+      <input type="hidden" name="quiz_default[][id]" value="<%= qd.id %>">
+      <input type="text" name="quiz_default[][response]" id="">
+    <% end %>
+  <% end %>
+
+  <div id="custom_quiz"></div>
+
+  <button type="button" id="add_custom_quiz">+</button>
+
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#city_id").select2({
+      width: "330px",
+      minimumInputlength: 1,
+      debug: true,
+      ajax: {
+        url: "<%= cities_path(format: :json) %>",
+        dataType: 'json',
+        delay: 250,
+        data: function (params){
+          return {
+            type: "select2",
+            q: params.term
+          };
+        },
+        processResults: function (data, page) {
+          return {
+            results: $.map(data, function (city) {
+              return {
+                text:`${city.code}`,
+                id: city.id
+              }
+            })
+          }
+        },
+        cache:true
+        },
+        escapeMarkup: function (markup) { return markup; },
+        theme: "bootstrap",
+        placeholder: "Escriba un caracter"
+      });
+    $("#business_id").select2({
+            width: "330px",
+            minimumInputlength: 1,
+            debug: true,
+            ajax: {
+                url: "<%= businesses_path(format: :json) %>",
+                dataType: 'json',
+                delay: 250,
+                data: function (params){
+                    return {
+                        type: "select2",
+                        q: params.term
+                    };
+                },
+                processResults: function (data, page) {
+                    return {
+                        results: $.map(data, function (business) {
+                            return {
+                                text:`${business.name}`,
+                                id: business.id
+                            }
+                        })
+                    }
+                },
+                cache:true
+            },
+            escapeMarkup: function (markup) { return markup; },
+            theme: "bootstrap",
+            placeholder: "Escriba un caracter"
+        });
+        $("#disclaimer_employee_id").select2({
+            width: "330px",
+            minimumInputlength: 1,
+            debug: true,
+            ajax: {
+                url: "<%= profiles_path(format: :json) %>",
+                dataType: 'json',
+                delay: 250,
+                data: function (params){
+                    return {
+                        type: "select2",
+                        q: params.term
+                    };
+                },
+                processResults: function (data, page) {
+                    return {
+                        results: $.map(data, function (profile) {
+                            return {
+                                text:`${profile.name}`,
+                                id: profile.id
+                            }
+                        })
+                    }
+                },
+                cache:true
+            },
+            escapeMarkup: function (markup) { return markup; },
+            theme: "bootstrap",
+            placeholder: "Escriba un caracter"
+      })
+  
+  $("#add_custom_quiz").click(function(){
+    console.log("carita feliz");
+    str_html_custom_quiz = '<br><label for="">Enunciado</label><br><input type="text" name="custom_quiz[][quiz]" id=""><br><label for="">Respuesta</label><br><input type="text" name="custom_quiz[][response]" id="">';
+    $("#custom_quiz").append(str_html_custom_quiz);
+  });
+  });
+</script>
