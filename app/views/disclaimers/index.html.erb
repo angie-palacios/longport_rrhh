@@ -10,7 +10,7 @@
       <th>Start at</th>
       <th>End at</th>
       <th>Creator</th>
-      <th>Buiness</th>
+      <th>Business</th>
       <th>Aceepted</th>
       <th colspan="3"></th>
     </tr>
@@ -19,12 +19,12 @@
   <tbody>
     <% @disclaimers.each do |disclaimer| %>
       <tr>
-        <td><%= disclaimer.employee %></td>
-        <td><%= disclaimer.city %></td>
+        <td><%= disclaimer.employee.name %></td>
+        <td><%= disclaimer.city.code %></td>
         <td><%= disclaimer.start_at %></td>
         <td><%= disclaimer.end_at %></td>
-        <td><%= disclaimer.creator %></td>
-        <td><%= disclaimer.buiness %></td>
+        <td><%= disclaimer.creator.name %></td>
+        <td><%= disclaimer.business.name %></td>
         <td><%= disclaimer.aceepted %></td>
         <td><%= link_to 'Show', disclaimer %></td>
         <td><%= link_to 'Edit', edit_disclaimer_path(disclaimer) %></td>

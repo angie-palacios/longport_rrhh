@@ -15,6 +15,9 @@ class DisclaimersController < ApplicationController
   # GET /disclaimers/new
   def new
     @disclaimer = Disclaimer.new
+    @business = Business.all
+    @city = City.all
+    @quiz_defaults = QuizDefault.all
   end
 
   # GET /disclaimers/1/edit
@@ -26,7 +29,10 @@ class DisclaimersController < ApplicationController
   def create
     @disclaimer = Disclaimer.new(disclaimer_params)
 
+    @disclaimer.creator = current_user
     respond_to do |format|
+      @disclaimer.add_quiz_default(quiz_default_params)
+      @disclaimer.add_quiz(quiz_params)
       if @disclaimer.save
         format.html { redirect_to @disclaimer, notice: 'Disclaimer was successfully created.' }
         format.json { render :show, status: :created, location: @disclaimer }
@@ -69,6 +75,15 @@ class DisclaimersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def disclaimer_params
-      params.require(:disclaimer).permit(:employee, :city_id, :start_at, :end_at, :creator, :buiness_id, :aceepted)
+      params.require(:disclaimer).permit(:employee_id, :city_id, :start_at, :end_at, :business_id, :aceepted)
     end
+
+    def quiz_default_params
+      params.permit(quiz_default: [:id, :response]).require(:quiz_default)
+    end
+
+    def quiz_params
+      params.permit(custom_quiz: [:quiz, :response]).require(:custom_quiz)
+    end
+    
 end

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :responses
   resources :quizzes
   resources :disclaimer_quiz_defaults
   resources :quiz_defaults

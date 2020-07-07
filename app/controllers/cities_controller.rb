@@ -5,6 +5,14 @@ class CitiesController < ApplicationController
   # GET /cities.json
   def index
     @cities = City.all
+    respond_to do | format |
+      format.html
+      format.json {
+        if params.has_key?(:type) && params[:type] == "select2"
+          render json: City.select2(params[:q])
+        end
+      }
+    end
   end
 
   # GET /cities/1
